@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* vars */
+:root {
+  --container: 1160px;
+  --header: 84px;
+}

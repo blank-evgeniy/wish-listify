@@ -1,0 +1,23 @@
+import { Link } from "react-router";
+
+import { RoutePath } from "@/app/providers/router";
+import GiftIcon from "@/shared/assets/icons/gift";
+
+const Logo = () => {
+  return (
+    <Link
+      className=" text-rose-200 hover:text-rose-50 transition-colors flex gap-x-2 items-center"
+      to={RoutePath.HOME}
+    >
+      <GiftIcon className="w-12 h-12" />
+      <div>
+        <div className="text-lg font-semibold leading-none w-full flex items-center justify-center bg-rose-100 text-rose-950 p-1 rounded-lg">
+          WISH LISTIFY
+        </div>
+        <span>твой список желаний</span>
+      </div>
+    </Link>
+  );
+};
+
+export default Logo;
