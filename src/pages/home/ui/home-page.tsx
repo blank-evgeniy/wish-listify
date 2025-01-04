@@ -1,4 +1,5 @@
 import Container from "@/shared/ui/container";
+import GiftboxImage from "@/shared/assets/images/giftbox.png";
 
 export const HomePage = () => {
   return (
@@ -16,7 +17,7 @@ export const HomePage = () => {
 
           <img
             className="pointer-events-none object-cover max-w-[50%]"
-            src="src/shared/assets/images/giftbox.png"
+            src={GiftboxImage}
             alt="giftbox"
           />
         </div>
