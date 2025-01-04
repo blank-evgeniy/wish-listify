@@ -1,4 +1,5 @@
 import Container from "@/shared/ui/container";
+import GiftboxImage from "@/shared/assets/images/giftbox.png";
 
 export const HomePage = () => {
   return (
@@ -6,7 +7,7 @@ export const HomePage = () => {
       <Container>
         <div className="flex items-center">
           <div className="space-y-4">
-            <h1 className="text-4xl text-rose-50">
+            <h1 className="text-4xl text-rose-50 max-w-[580px]">
               СОЗДАЙ СВОЙ ИДЕАЛЬНЫЙ СПИСОК ЖЕЛАНИЙ.
             </h1>
             <h2 className="text-3xl leading-[1.125] text-rose-300">
@@ -16,7 +17,7 @@ export const HomePage = () => {
 
           <img
             className="pointer-events-none object-cover max-w-[50%]"
-            src="src/shared/assets/images/giftbox.png"
+            src={GiftboxImage}
             alt="giftbox"
           />
         </div>
