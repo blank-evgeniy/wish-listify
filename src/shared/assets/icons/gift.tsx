@@ -12,9 +12,9 @@ const GiftIcon = ({ className }: GiftIconProps) => {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     >
       <rect x="3" y="8" width="18" height="4" rx="1" />
       <path d="M12 8v13" />
