@@ -8,12 +8,15 @@ import { queryClient } from "@/shared/api/query-client.ts";
 import App from "@/app/App.tsx";
 
 import "@/app/styles/index.css";
+import { UserProvider } from "./app/providers/user";
 
 createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
     <QueryClientProvider client={queryClient}>
-      <App />
-      <ReactQueryDevtools initialIsOpen={false} />
+      <UserProvider>
+        <App />
+        <ReactQueryDevtools initialIsOpen={false} />
+      </UserProvider>
     </QueryClientProvider>
   </BrowserRouter>
 );
