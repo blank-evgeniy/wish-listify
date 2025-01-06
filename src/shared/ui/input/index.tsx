@@ -15,7 +15,7 @@ const Input = ({
 }: InputProps) => {
   return (
     <div className={twMerge("flex flex-col gap-1", className)}>
-      <label htmlFor={id} className="text-rose-50 text-lg ml-[2px]">
+      <label htmlFor={id} className="text-rose-50 ml-[2px]">
         {label}
       </label>
       <input

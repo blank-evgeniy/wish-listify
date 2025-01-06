@@ -2,6 +2,7 @@ import Container from "@/shared/ui/container";
 import GiftboxImage from "@/shared/assets/images/giftbox.png";
 import { Heading } from "@/shared/ui/heading";
 import { AppLink } from "@/shared/ui/link";
+import { RoutePath } from "@/app/providers/router";
 
 export const HomePage = () => {
   return (
@@ -15,7 +16,7 @@ export const HomePage = () => {
             </h2>
             <AppLink
               linkType="button"
-              to="/registration"
+              to={RoutePath.REGISTRATION}
               className="max-w-[320px] max-sm:mx-auto"
             >
               Создать свой список желаний
