@@ -4,9 +4,15 @@ import { Route, Routes } from "react-router";
 import { useUser } from "../../user";
 import PrivateRoute from "./private-route";
 import PublicRoute from "./public-route";
+import { Loader } from "@/shared/ui/loader";
 
 export const AppRouter = () => {
-  const isAuthenticated = !!useUser();
+  const { user, loading } = useUser();
+  const isAuthenticated = !!user;
+
+  if (loading) {
+    return <Loader />;
+  }
 
   const renderRoutes = routes.map((route) => {
     const { path, element, authOnly, publicOnly } = route;
@@ -24,7 +30,7 @@ export const AppRouter = () => {
   });
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Loader />}>
       <Routes>{renderRoutes}</Routes>
     </Suspense>
   );

@@ -1,9 +1,5 @@
-import { RoutePath } from "@/app/providers/router";
-
-interface LinkType {
-  title: string;
-  href: RoutePath;
-}
+import { RoutePath } from "@/app/config/routes";
+import { LinkType } from "@/shared/types";
 
 export const authLinks: LinkType[] = [
   { title: "Вход", href: RoutePath.LOGIN },

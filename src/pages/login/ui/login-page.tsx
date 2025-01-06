@@ -1,4 +1,4 @@
-import { RoutePath } from "@/app/providers/router";
+import { RoutePath } from "@/app/config/routes";
 import Container from "@/shared/ui/container";
 import { Heading } from "@/shared/ui/heading";
 import { AppLink } from "@/shared/ui/link";

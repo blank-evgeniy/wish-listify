@@ -1,14 +1,10 @@
-import { HomePage } from "@/pages/home";
 import LoginPage from "@/pages/login/ui/login-page";
+import { FriendsPage } from "@/pages/friends";
+import { HomePage } from "@/pages/home";
+import { ProfilePage } from "@/pages/profile";
 import { RegistrationPage } from "@/pages/registration";
-
-export enum RoutePath {
-  HOME = "/",
-  LOGIN = "/login",
-  REGISTRATION = "/registration",
-  WISHLIST = "/wishlist",
-  FRIENDS = "/friends",
-}
+import { WishlistPage } from "@/pages/wishlist";
+import { RoutePath } from "@/app/config/routes";
 
 interface Route {
   path: RoutePath;
@@ -34,12 +30,17 @@ export const routes: Route[] = [
   },
   {
     path: RoutePath.WISHLIST,
-    element: <div>wishlist</div>,
+    element: <WishlistPage />,
     authOnly: true,
   },
   {
     path: RoutePath.FRIENDS,
-    element: <div>friends</div>,
+    element: <FriendsPage />,
+    authOnly: true,
+  },
+  {
+    path: RoutePath.PROFILE,
+    element: <ProfilePage />,
     authOnly: true,
   },
 ];

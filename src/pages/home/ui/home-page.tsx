@@ -2,7 +2,7 @@ import Container from "@/shared/ui/container";
 import GiftboxImage from "@/shared/assets/images/giftbox.png";
 import { Heading } from "@/shared/ui/heading";
 import { AppLink } from "@/shared/ui/link";
-import { RoutePath } from "@/app/providers/router";
+import { RoutePath } from "@/app/config/routes";
 
 export const HomePage = () => {
   return (

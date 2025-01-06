@@ -1,5 +1,5 @@
+import { RoutePath } from "@/app/config/routes";
 import { Navigate } from "react-router";
-import { RoutePath } from "../model/routes";
 
 type PublicRouteProps = {
   isAuthenticated?: boolean;

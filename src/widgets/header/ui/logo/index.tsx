@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 
-import { RoutePath } from "@/app/providers/router";
+import { RoutePath } from "@/app/config/routes";
 import GiftIcon from "@/shared/assets/icons/gift";
 
 const Logo = () => {
