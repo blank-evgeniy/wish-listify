@@ -8,7 +8,7 @@ import { auth } from "@/shared/config/firebase";
  *
  * @returns {object} - An object containing:
  *  - handleSignOut: Function to trigger the sign-out.
- *  - loading: Boolean indicating if the sign-out is in progress.
+ *  - isLoading: Boolean indicating if the sign-out is in progress.
  *  - error: Any error encountered during the sign-out process.
  */
 export const useSignOut = () => {
@@ -18,7 +18,7 @@ export const useSignOut = () => {
 
   return {
     handleSignOut: mutation.mutate,
-    loading: mutation.isLoading,
+    isLoading: mutation.isLoading,
     error: mutation.error,
   };
 };

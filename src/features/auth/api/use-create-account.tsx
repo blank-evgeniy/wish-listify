@@ -8,7 +8,7 @@ import { AuthData } from "../model/type";
  *
  * @returns {object} - An object containing:
  *  - handleCreate: Function to trigger the account creation.
- *  - loading: Boolean indicating if the account creation is in progress.
+ *  - isLoading: Boolean indicating if the account creation is in progress.
  *  - error: Any error encountered during the account creation process.
  */
 export const useCreateAccount = () => {
@@ -22,7 +22,7 @@ export const useCreateAccount = () => {
 
   return {
     handleCreate: mutation.mutate,
-    loading: mutation.isLoading,
+    isLoading: mutation.isLoading,
     error: mutation.error,
   };
 };

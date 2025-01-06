@@ -8,7 +8,7 @@ import { auth, googleProvider } from "@/shared/config/firebase";
  *
  * @returns {object} - An object containing:
  *  - handleSignIn: Function to trigger the authentication.
- *  - loading: Boolean indicating if the authentication is in progress.
+ *  - isLoading: Boolean indicating if the authentication is in progress.
  *  - error: Any error encountered during the authentication process.
  */
 export const useGoogleAuth = () => {
@@ -21,7 +21,7 @@ export const useGoogleAuth = () => {
 
   return {
     handleSignIn: mutation.mutate,
-    loading: mutation.isLoading,
+    isLoading: mutation.isLoading,
     error: mutation.error,
   };
 };

@@ -8,7 +8,7 @@ import { AuthData } from "../model/type";
  *
  * @returns {object} - An object containing:
  *  - handleSignIn: Function to trigger the authentication.
- *  - loading: Boolean indicating if the authentication is in progress.
+ *  - isLoading: Boolean indicating if the authentication is in progress.
  *  - error: Any error encountered during the authentication process.
  */
 export const usePasswordAuth = () => {
@@ -19,7 +19,7 @@ export const usePasswordAuth = () => {
 
   return {
     handleSignIn: mutation.mutate,
-    loading: mutation.isLoading,
+    isLoading: mutation.isLoading,
     error: mutation.error,
   };
 };
