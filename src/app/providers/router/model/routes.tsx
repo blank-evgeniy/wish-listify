@@ -1,5 +1,6 @@
 import { HomePage } from "@/pages/home";
 import LoginPage from "@/pages/login/ui/login-page";
+import { RegistrationPage } from "@/pages/registration";
 
 export enum RoutePath {
   HOME = "/",
@@ -13,6 +14,7 @@ interface Route {
   path: RoutePath;
   element: JSX.Element;
   authOnly?: boolean;
+  publicOnly?: boolean;
 }
 
 export const routes: Route[] = [
@@ -23,17 +25,21 @@ export const routes: Route[] = [
   {
     path: RoutePath.LOGIN,
     element: <LoginPage />,
+    publicOnly: true,
   },
   {
     path: RoutePath.REGISTRATION,
-    element: <div>registration</div>,
+    element: <RegistrationPage />,
+    publicOnly: true,
   },
   {
     path: RoutePath.WISHLIST,
     element: <div>wishlist</div>,
+    authOnly: true,
   },
   {
     path: RoutePath.FRIENDS,
     element: <div>friends</div>,
+    authOnly: true,
   },
 ];
