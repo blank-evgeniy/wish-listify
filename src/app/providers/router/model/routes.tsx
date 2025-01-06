@@ -1,4 +1,5 @@
 import { HomePage } from "@/pages/home";
+import LoginPage from "@/pages/login/ui/login-page";
 
 export enum RoutePath {
   HOME = "/",
@@ -21,7 +22,7 @@ export const routes: Route[] = [
   },
   {
     path: RoutePath.LOGIN,
-    element: <div>login</div>,
+    element: <LoginPage />,
   },
   {
     path: RoutePath.REGISTRATION,
