@@ -14,14 +14,18 @@ interface AvatarProps {
 }
 
 const Avatar = ({ className, userData, size = "md" }: AvatarProps) => {
+  const hasPhoto = !!userData?.photoURL;
+
   const styles = twMerge(
-    "rounded-full object-cover flex items-center justify-center bg-rose-100 text-rose-950",
+    hasPhoto
+      ? "rounded-full object-cover"
+      : "rounded-full object-cover flex items-center justify-center bg-rose-100 text-rose-950 leading-none",
     sizes[size],
     className
   );
   const userName = userData?.displayName || userData?.email;
 
-  if (userData?.photoURL) {
+  if (hasPhoto) {
     return (
       <img
         className={styles}
