@@ -1,14 +1,27 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../model/user-context";
+import { auth } from "@/shared/config/firebase";
 
 /**
- * Hook to get the current user from context.
+ * Hook to get the current user and a flag indicating if the user has been loaded.
  *
- * @throws {Error} - If useUser is called outside of a UserProvider.
+ * @returns {object} - An object containing:
+ *  - user: The current user, or null if the user is not logged in.
+ *  - loading: A boolean indicating if the user is being loaded.
  *
- * @returns {User | null} - The current user.
+ * Throws an error if the hook is used outside of a UserProvider.
  */
 export const useUser = () => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(() => {
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
   const context = useContext(UserContext);
 
   if (!context) {
@@ -17,5 +30,5 @@ export const useUser = () => {
 
   const { user } = context;
 
-  return user;
+  return { user, loading };
 };

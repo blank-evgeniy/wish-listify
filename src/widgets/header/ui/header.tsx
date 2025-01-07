@@ -9,7 +9,11 @@ import { useSignOut } from "@/features/auth";
 
 export const Header = () => {
   const { handleSignOut } = useSignOut();
-  const user = useUser();
+  const { user, loading } = useUser();
+
+  const renderedLinks = authLinks.filter(
+    ({ href }) => !loading && !user && href
+  );
 
   return (
     <div className="bg-rose-950">
@@ -17,9 +21,9 @@ export const Header = () => {
         <header className="h-header flex items-center">
           <Logo />
 
-          {!user ? (
+          {!!renderedLinks.length && (
             <ul className="flex ml-auto xxs:gap-x-8 gap-x-4 text-lg text-rose-300 border-2 border-rose-300 rounded-lg leading-none py-2 xxs:px-4 px-2">
-              {authLinks.map(({ title, href }) => (
+              {renderedLinks.map(({ title, href }) => (
                 <li
                   key={title}
                   className="hover:text-rose-50 transition-colors"
@@ -28,7 +32,9 @@ export const Header = () => {
                 </li>
               ))}
             </ul>
-          ) : (
+          )}
+
+          {!!user && (
             <Button
               buttonType="underline-light"
               className="ml-auto"
