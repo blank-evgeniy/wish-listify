@@ -1,4 +1,3 @@
-import { Profile } from "@/entities/profile";
 import { twMerge } from "tailwind-merge";
 
 const sizes = {
@@ -9,12 +8,20 @@ const sizes = {
 
 interface AvatarProps {
   className?: string;
-  userData?: Profile | null;
   size?: keyof typeof sizes;
+  name?: string;
+  email?: string;
+  photoURL?: string;
 }
 
-const Avatar = ({ className, userData, size = "md" }: AvatarProps) => {
-  const hasPhoto = !!userData?.photoURL;
+const Avatar = ({
+  className,
+  name,
+  email,
+  photoURL,
+  size = "md",
+}: AvatarProps) => {
+  const hasPhoto = !!photoURL;
 
   const styles = twMerge(
     hasPhoto
@@ -23,16 +30,10 @@ const Avatar = ({ className, userData, size = "md" }: AvatarProps) => {
     sizes[size],
     className
   );
-  const userName = userData?.displayName || userData?.email;
+  const userName = name || email;
 
   if (hasPhoto) {
-    return (
-      <img
-        className={styles}
-        src={userData.photoURL}
-        alt={`${userName} аватар`}
-      />
-    );
+    return <img className={styles} src={photoURL} alt={`${userName} аватар`} />;
   }
 
   return (

@@ -11,7 +11,11 @@ export const AppRouter = () => {
   const isAuthenticated = !!user;
 
   if (loading) {
-    return <Loader />;
+    return (
+      <div className="h-[calc(100vh-var(--header))] flex items-center justify-center">
+        <Loader />
+      </div>
+    );
   }
 
   const renderRoutes = routes.map((route) => {

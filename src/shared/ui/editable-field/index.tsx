@@ -20,7 +20,7 @@ const EditableField = ({
   onAccept,
   ...props
 }: EditableFieldProps) => {
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(!defaultValue);
   const [value, setValue] = useState(defaultValue || "");
 
   const handleAccept = () => {

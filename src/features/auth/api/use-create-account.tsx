@@ -1,6 +1,7 @@
-import { auth } from "@/shared/config/firebase";
+import { useMutation } from "@tanstack/react-query";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { useMutation } from "react-query";
+import { profileApi } from "@/entities/profile/api/api";
+import { auth } from "@/shared/config/firebase";
 import { AuthData } from "../model/type";
 
 /**
@@ -13,8 +14,20 @@ import { AuthData } from "../model/type";
  */
 export const useCreateAccount = () => {
   const mutation = useMutation({
-    mutationFn: ({ email, password }: AuthData) =>
-      createUserWithEmailAndPassword(auth, email, password),
+    mutationFn: async ({ email, password }: AuthData) => {
+      const userCredentials = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredentials.user;
+
+      await profileApi.createProfile(user.uid, {
+        uid: user.uid,
+        email: user.email ?? "",
+        name: user.displayName ?? "",
+      });
+    },
     onSuccess: () => {
       // TODO: редирект на определенную страницу
     },
@@ -22,7 +35,7 @@ export const useCreateAccount = () => {
 
   return {
     handleCreate: mutation.mutate,
-    isLoading: mutation.isLoading,
+    isLoading: mutation.isPending,
     error: mutation.error,
   };
 };

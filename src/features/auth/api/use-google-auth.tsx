@@ -1,7 +1,8 @@
 import { signInWithPopup } from "firebase/auth";
-import { useMutation } from "react-query";
+import { useMutation } from "@tanstack/react-query";
 
 import { auth, googleProvider } from "@/shared/config/firebase";
+import { profileApi } from "@/entities/profile/api/api";
 
 /**
  * Custom hook to handle user authentication using Google account.
@@ -13,7 +14,20 @@ import { auth, googleProvider } from "@/shared/config/firebase";
  */
 export const useGoogleAuth = () => {
   const mutation = useMutation({
-    mutationFn: () => signInWithPopup(auth, googleProvider),
+    mutationFn: async () => {
+      const userCredentials = await signInWithPopup(auth, googleProvider);
+      const user = userCredentials.user;
+
+      const hasProfile = await profileApi.checkProfile(user.uid);
+
+      if (!hasProfile) {
+        await profileApi.createProfile(user.uid, {
+          uid: user.uid,
+          email: user.email ?? "",
+          name: user.displayName ?? "",
+        });
+      }
+    },
     onSuccess: () => {
       // TODO: редирект на определенную страницу
     },
@@ -21,7 +35,7 @@ export const useGoogleAuth = () => {
 
   return {
     handleSignIn: mutation.mutate,
-    isLoading: mutation.isLoading,
+    isLoading: mutation.isPending,
     error: mutation.error,
   };
 };

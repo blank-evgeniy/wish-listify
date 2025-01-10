@@ -1,7 +1,9 @@
 import { signOut } from "firebase/auth";
-import { useMutation } from "react-query";
+import { useMutation } from "@tanstack/react-query";
 
 import { auth } from "@/shared/config/firebase";
+import { queryClient } from "@/shared/api/query-client";
+import { profileApi } from "@/entities/profile/api/api";
 
 /**
  * Custom hook to handle user sign-out using Firebase Auth.
@@ -14,11 +16,16 @@ import { auth } from "@/shared/config/firebase";
 export const useSignOut = () => {
   const mutation = useMutation({
     mutationFn: () => signOut(auth),
+    onSettled: () => {
+      queryClient.removeQueries({
+        queryKey: [profileApi.getQueryKey()],
+      });
+    },
   });
 
   return {
     handleSignOut: mutation.mutate,
-    isLoading: mutation.isLoading,
+    isLoading: mutation.isPending,
     error: mutation.error,
   };
 };

@@ -1,6 +1,6 @@
 import { auth } from "@/shared/config/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { useMutation } from "react-query";
+import { useMutation } from "@tanstack/react-query";
 import { AuthData } from "../model/type";
 
 /**
@@ -19,7 +19,7 @@ export const usePasswordAuth = () => {
 
   return {
     handleSignIn: mutation.mutate,
-    isLoading: mutation.isLoading,
+    isLoading: mutation.isPending,
     error: mutation.error,
   };
 };
