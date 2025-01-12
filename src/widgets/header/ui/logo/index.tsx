@@ -1,20 +1,17 @@
 import { Link } from "react-router";
 
 import { RoutePath } from "@/app/config/routes";
-import GiftIcon from "@/shared/assets/icons/gift";
+import { LogoIcon } from "@/shared/assets/icons/logo";
 
 const Logo = () => {
   return (
     <Link
-      className=" text-rose-200 hover:text-rose-50 transition-colors flex gap-x-2 items-center"
+      className=" text-text-100 hover:text-text-200 transition-colors flex gap-x-2 items-center group"
       to={RoutePath.HOME}
     >
-      <GiftIcon className="w-12 h-12 xs:block hidden" />
-      <div>
-        <div className="text-lg font-semibold leading-none w-full flex items-center justify-center bg-rose-100 text-rose-950 p-1 rounded-lg">
-          WISH LISTIFY
-        </div>
-        <span className="xs:inline hidden">твой список желаний</span>
+      <LogoIcon className="w-10 h-10 group-hover:-rotate-6 transition-transform" />
+      <div className=" font-semibold leading-none shadow-inner w-full text-center p-2 bg-bg-200 rounded-lg xs:text-base text-sm">
+        WISH LISTIFY
       </div>
     </Link>
   );

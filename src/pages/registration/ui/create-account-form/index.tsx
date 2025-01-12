@@ -37,7 +37,7 @@ const CreateAccountForm = () => {
         onChange={(e) => setPassword(e.target.value)}
       />
 
-      {!!error && <p className="text-red-200">{authErrorCheck(error)}</p>}
+      {!!error && <p className="text-red-400">{authErrorCheck(error)}</p>}
 
       <Button isLoading={isLoading} className="ml-auto mt-4" type="submit">
         Зарегистрироваться

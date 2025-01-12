@@ -1,8 +1,8 @@
-interface GiftIconProps {
+interface IconProps {
   className?: string;
 }
 
-const GiftIcon = ({ className }: GiftIconProps) => {
+const GiftIcon = ({ className }: IconProps) => {
   return (
     <svg
       className={className}

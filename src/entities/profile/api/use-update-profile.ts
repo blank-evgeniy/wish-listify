@@ -4,6 +4,7 @@ import { useMutation } from "@tanstack/react-query";
 import { ProfileDto } from "../model/type";
 import { profileApi } from "./api";
 import { queryClient } from "@/shared/api/query-client";
+import { optimisticUpdateProfile } from "./optimistic-update-profile";
 
 /**
  * Custom hook to handle profile updates for the authenticated user.
@@ -22,7 +23,7 @@ import { queryClient } from "@/shared/api/query-client";
 export const useUpdateProfile = () => {
   const mutation = useMutation({
     mutationFn: async (newProfileData: Partial<ProfileDto>) => {
-      const { name, photoURL } = newProfileData;
+      const { name } = newProfileData;
 
       if (!auth.currentUser) {
         throw new Error("Пользователь не аутентифицирован");
@@ -31,12 +32,12 @@ export const useUpdateProfile = () => {
       const promises = [];
 
       // обновляем профиль в auth
-      if (name || photoURL) {
-        const newAuthData = {
-          displayName: name,
-          photoURL,
-        };
-        promises.push(updateProfile(auth.currentUser, newAuthData));
+      if (name) {
+        promises.push(
+          updateProfile(auth.currentUser, {
+            displayName: name,
+          })
+        );
       }
 
       //обновляем профиль в базе данных
@@ -45,6 +46,18 @@ export const useUpdateProfile = () => {
       );
 
       await Promise.all(promises);
+    },
+
+    onMutate: async (newProfilePartial) => {
+      const mutationResult = await optimisticUpdateProfile(newProfilePartial);
+      return mutationResult;
+    },
+
+    onError: (__err, __newProfile, context) => {
+      queryClient.setQueryData(
+        [profileApi.getQueryKey()],
+        context?.previousProfile
+      );
     },
 
     onSettled: () => {

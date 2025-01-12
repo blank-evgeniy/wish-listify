@@ -4,8 +4,26 @@
 
 /* vars */
 :root {
+  /* sizes */
   --container: 1160px;
   --header: 84px;
+
+  /* colors */
+  --primary-100: #ffc2c8;
+  --primary-200: #e0a4ab;
+  --primary-300: #996369;
+  --accent-100: #ffd3d9;
+  --accent-200: #9a7379;
+  --text-100: #5c3b3e;
+  --text-200: #8a6668;
+  --bg-100: #fceff0;
+  --bg-200: #f2e5e6;
+  --bg-300: #c9bdbe;
+}
+
+body {
+  background-color: var(--bg-100);
+  color: var(--text-100);
 }
 
 ::-webkit-scrollbar {
@@ -21,4 +39,8 @@
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
   border-radius: 4px;
+}
+
+input:-webkit-autofill {
+  box-shadow: inset 0 0 0 1000px var(--accent-100);
 }

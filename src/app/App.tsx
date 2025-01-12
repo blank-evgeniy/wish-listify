@@ -3,9 +3,11 @@ import { AppRouter } from "./providers/router/";
 
 function App() {
   return (
-    <div className="min-h-screen bg-rose-950 text-rose-50">
+    <div className="min-h-screen bg-bg-100 text-text-100">
       <Header />
-      <AppRouter />
+      <div className="pt-[var(--header)]">
+        <AppRouter />
+      </div>
     </div>
   );
 }

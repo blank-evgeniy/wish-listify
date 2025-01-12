@@ -1,28 +1,49 @@
 import { Link } from "react-router";
 import { twMerge } from "tailwind-merge";
 
-const linkTypes = {
-  primary:
-    "text-rose-500 hover:text-rose-600 transition-colors underline underline-offset-2",
-  button:
-    "bg-rose-500 text-rose-50 hover:bg-rose-600 shadow active:scale-95 transition-all rounded-lg px-4 py-2 text-lg flex items-center justify-center gap-x-2",
+const linkVariants = {
+  filled:
+    "bg-text-100 text-accent-100 hover:bg-text-200 hover:text-accent-100 transition-colors rounded-3xl",
+  outlined:
+    "border border-text-100 text-text-100 hover:bg-text-100 hover:text-accent-100 transition-colors rounded-3xl",
+  text: "text-100 hover:opacity-80 transition-opacity p-0 inline-block",
+  underline:
+    "text-100 hover:opacity-80 transition-opacity p-0 inline-block underline underline-offset-2",
+};
+
+const linkSizes = {
+  sm: "text-md px-3 py-1",
+  md: "text-lg px-4 py-2",
+  lg: "text-2xl px-6 py-3",
 };
 
 interface AppLinkProps {
+  variant?: keyof typeof linkVariants;
+  size?: keyof typeof linkSizes;
   className?: string;
   children: React.ReactNode;
   to: string;
-  linkType?: keyof typeof linkTypes;
 }
 
 export const AppLink = ({
   className,
   children,
   to,
-  linkType = "primary",
+  variant = "text",
+  size = "md",
 }: AppLinkProps) => {
+  const defaultStyle = "flex items-center justify-center gap-x-2 font-medium";
+
   return (
-    <Link to={to} className={twMerge(linkTypes[linkType], className)}>
+    <Link
+      to={to}
+      className={twMerge(
+        defaultStyle,
+        linkSizes[size],
+        linkVariants[variant],
+        className
+      )}
+    >
       {children}
     </Link>
   );

@@ -9,7 +9,7 @@ export const Heading = ({ className, children }: HeadingProps) => {
   return (
     <h1
       className={twMerge(
-        "sm:text-4xl text-2xl text-rose-50 font-medium",
+        "sm:text-4xl text-2xl text-text-100 font-medium",
         className
       )}
     >

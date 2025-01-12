@@ -6,16 +6,16 @@ import { RoutePath } from "@/app/config/routes";
 
 export const HomePage = () => {
   return (
-    <main className="min-h-[calc(100vh-var(--header))] bg-rose-950 flex items-center">
+    <main className="min-h-[calc(100vh-var(--header))] flex items-center">
       <Container>
         <div className="flex max-sm:flex-col items-center">
           <div className="flex flex-col gap-4 sm:max-w-[calc(var(--container)/2)]">
             <Heading>СОЗДАЙ СВОЙ ИДЕАЛЬНЫЙ СПИСОК ЖЕЛАНИЙ.</Heading>
-            <h2 className="sm:text-3xl text-xl leading-[1.125] text-rose-300">
+            <h2 className="sm:text-3xl text-xl leading-[1.125] text-text-200">
               Легко добавляй, делись и вдохновляйся новыми идеями.
             </h2>
             <AppLink
-              linkType="button"
+              variant="filled"
               to={RoutePath.REGISTRATION}
               className="max-w-[320px] max-sm:mx-auto"
             >

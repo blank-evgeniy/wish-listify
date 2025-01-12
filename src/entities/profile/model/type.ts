@@ -5,8 +5,8 @@ export type EditableProfile = Pick<Profile, "displayName" | "photoURL">;
 
 export interface ProfileDto {
   uid: string;
-  name?: string;
-  photoURL?: string;
-  bio?: string;
   email: string;
+  avatarNumber?: number;
+  name?: string;
+  bio?: string;
 }
