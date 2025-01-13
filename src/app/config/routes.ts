@@ -5,4 +5,5 @@ export enum RoutePath {
   WISHLIST = "/wishlist",
   FRIENDS = "/friends",
   PROFILE = "/profile",
+  NOT_FOUND = "*",
 }

@@ -5,6 +5,7 @@ import { ProfilePage } from "@/pages/profile";
 import { RegistrationPage } from "@/pages/registration";
 import { WishlistPage } from "@/pages/wishlist";
 import { RoutePath } from "@/app/config/routes";
+import { NotFoundPage } from "@/pages/not-found";
 
 interface Route {
   path: RoutePath;
@@ -42,5 +43,9 @@ export const routes: Route[] = [
     path: RoutePath.PROFILE,
     element: <ProfilePage />,
     authOnly: true,
+  },
+  {
+    path: RoutePath.NOT_FOUND,
+    element: <NotFoundPage />,
   },
 ];
