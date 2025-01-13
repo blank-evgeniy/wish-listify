@@ -1,8 +1,7 @@
-import CheckIcon from "@/shared/assets/icons/check";
-import CrossIcon from "@/shared/assets/icons/cross";
-import EditIcon from "@/shared/assets/icons/edit";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
+import Label from "../label";
+import ButtonGroup from "./button-group";
 
 interface EditableFieldProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -11,9 +10,14 @@ interface EditableFieldProps
   onAccept?: (newValue: string) => void;
 }
 
+const containerStyle = twMerge(
+  "px-2 py-3 leading-none rounded-t-md border-b bg-bg-300 border-text-200 text-text-100 flex items-center gap-4 h-input-h",
+  "focus-within:bg-accent-100  focus-within:border-accent-200"
+);
+
 const EditableField = ({
   className,
-  name,
+  id,
   label,
   disabled,
   defaultValue,
@@ -38,58 +42,50 @@ const EditableField = ({
     setValue(defaultValue || "");
   }, [defaultValue]);
 
-  useEffect(() => {
-    if (isEditing && inputRef.current) inputRef.current.focus();
-  }, [isEditing]);
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      const inFocus = inputRef.current === document.activeElement && isEditing;
 
-  useEffect(() => {
-    const inFocus = inputRef.current === document.activeElement && isEditing;
-
-    const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Enter" && inFocus) {
         handleAccept();
       }
       if (e.key === "Escape" && inFocus) {
         handleCancel();
       }
-    };
+    },
+    [isEditing, handleAccept, handleCancel]
+  );
+
+  useEffect(() => {
+    if (isEditing && inputRef.current) inputRef.current.focus();
+  }, [isEditing]);
+
+  useEffect(() => {
     document.addEventListener("keydown", handleKeyDown);
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [handleAccept, isEditing, handleCancel]);
+  }, [handleKeyDown]);
 
   return (
     <div className={twMerge("flex flex-col gap-1", className)}>
-      <label htmlFor={props.id} className="text-text-200 font-semibold">
-        {label}
-      </label>
-      <div className="px-2 py-3 leading-none rounded-t-md border-b bg-bg-200 border-text-200 text-text-200 focus:outline-none focus:border-accent-200 placeholder:text-accent-200 flex items-center gap-4">
+      <Label htmlFor={id}>{label}</Label>
+      <div className={containerStyle}>
         <input
           {...props}
           ref={inputRef}
-          name={name}
           value={value}
           onChange={(e) => setValue(e.target.value)}
           disabled={!isEditing || disabled}
           className="bg-inherit focus:outline-none placeholder:text-accent-200 w-full"
         />
-        <div className="ml-auto flex gap-2">
-          {isEditing ? (
-            <>
-              <button onClick={handleAccept}>
-                <CheckIcon className="w-6 h-6 hover:text-green-500" />
-              </button>
-              <button onClick={handleCancel}>
-                <CrossIcon className="w-6 h-6 hover:text-red-500" />
-              </button>
-            </>
-          ) : (
-            <button onClick={handelEdit} disabled={disabled}>
-              <EditIcon className="w-6 h-6 hover:opacity-80" />
-            </button>
-          )}
-        </div>
+        <ButtonGroup
+          isEditing={isEditing}
+          disabled={disabled}
+          onAccept={handleAccept}
+          onCancel={handleCancel}
+          onEdit={handelEdit}
+        />
       </div>
     </div>
   );

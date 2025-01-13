@@ -15,6 +15,7 @@ export default {
       spacing: {
         header: "var(--header)",
         container: "var(--container)",
+        "input-h": "var(--input-h)",
       },
       colors: {
         primary: {
