@@ -72,12 +72,13 @@ const EditableField = ({
       <Label htmlFor={id}>{label}</Label>
       <div className={containerStyle}>
         <input
-          {...props}
           ref={inputRef}
+          id={id}
           value={value}
           onChange={(e) => setValue(e.target.value)}
           disabled={!isEditing || disabled}
           className="bg-inherit focus:outline-none placeholder:text-accent-200 w-full"
+          {...props}
         />
         <ButtonGroup
           isEditing={isEditing}

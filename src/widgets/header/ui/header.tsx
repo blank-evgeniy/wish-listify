@@ -5,6 +5,7 @@ import { useUser } from "@/app/providers/user";
 import Button from "@/shared/ui/button";
 import { useSignOut } from "@/features/auth";
 import { AppLink } from "@/shared/ui/link";
+import { ThemeSwitcher } from "@/widgets/theme-switcher";
 
 export const Header = () => {
   const { handleSignOut } = useSignOut();
@@ -39,6 +40,8 @@ export const Header = () => {
               Выйти
             </Button>
           )}
+
+          <ThemeSwitcher className="ml-2 xs:block hidden" />
         </header>
       </Container>
     </div>
