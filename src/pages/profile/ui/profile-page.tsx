@@ -19,18 +19,14 @@ export const ProfilePage = () => {
       <main className="w-full">
         <Heading>Профиль</Heading>
 
-        <Paper className="mt-8">
+        <Paper className="my-8">
           {isLoadingProfile ? (
             <div className="w-full flex items-center justify-center my-16">
               <Loader />
             </div>
           ) : (
             <>
-              <Avatar
-                avatarNumber={profile?.avatarNumber ?? 0}
-                size="lg"
-                className="mt-8"
-              />
+              <Avatar avatarNumber={profile?.avatarNumber ?? 0} size="lg" />
               <p className="text-text-200 mt-4 font-medium">Выберите аватар:</p>
               <AvatarPicker
                 className="mt-2"

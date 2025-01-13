@@ -6,6 +6,7 @@ import { RegistrationPage } from "@/pages/registration";
 import { WishlistPage } from "@/pages/wishlist";
 import { RoutePath } from "@/app/config/routes";
 import { NotFoundPage } from "@/pages/not-found";
+import { AddWishPage } from "@/pages/add-wish";
 
 interface Route {
   path: RoutePath;
@@ -32,6 +33,11 @@ export const routes: Route[] = [
   {
     path: RoutePath.WISHLIST,
     element: <WishlistPage />,
+    authOnly: true,
+  },
+  {
+    path: RoutePath.ADD_WISH,
+    element: <AddWishPage />,
     authOnly: true,
   },
   {

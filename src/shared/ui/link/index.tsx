@@ -13,7 +13,7 @@ const linkVariants = {
 
 const linkSizes = {
   sm: "text-md px-3 py-1",
-  md: "text-lg px-4 py-2",
+  md: "text-lg px-4 py-[6px]",
   lg: "text-2xl px-6 py-3",
 };
 

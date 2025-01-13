@@ -11,7 +11,7 @@ export const FriendsPage = () => {
       <Sidebar />
       <main className="w-full">
         <Heading>Друзья</Heading>
-        <Paper className="flex flex-col items-center justify-center gap-y-4 mt-8">
+        <Paper className="flex flex-col items-center justify-center gap-y-4 my-8">
           <img
             src={FriendImage}
             className="w-[420px] aspect-square opacity-80"

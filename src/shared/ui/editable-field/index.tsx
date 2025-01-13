@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { twMerge } from "tailwind-merge";
+import { twJoin, twMerge } from "tailwind-merge";
 import Label from "../label";
 import ButtonGroup from "./button-group";
 
@@ -10,7 +10,7 @@ interface EditableFieldProps
   onAccept?: (newValue: string) => void;
 }
 
-const containerStyle = twMerge(
+const containerStyle = twJoin(
   "px-2 py-3 leading-none rounded-t-md border-b bg-bg-300 border-text-200 text-text-100 flex items-center gap-4 h-input-h",
   "focus-within:bg-accent-100  focus-within:border-accent-200"
 );
