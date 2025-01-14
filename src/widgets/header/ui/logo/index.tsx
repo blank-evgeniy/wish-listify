@@ -10,7 +10,7 @@ const Logo = () => {
       to={RoutePath.HOME}
     >
       <LogoIcon className="w-10 h-10 group-hover:-rotate-6 transition-transform" />
-      <div className=" font-semibold leading-none shadow-inner w-full text-center p-2 bg-bg-200 rounded-lg xs:text-base text-sm">
+      <div className="xs:block hidden font-semibold leading-none shadow-inner w-full text-center p-2 bg-bg-200 rounded-lg xs:text-base text-sm">
         WISH LISTIFY
       </div>
     </Link>

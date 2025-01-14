@@ -21,27 +21,27 @@ export const Header = () => {
         <header className="h-header flex items-center gap-x-2">
           <Logo />
 
-          {!!renderedLinks.length && (
-            <ul className="flex ml-auto xxs:gap-x-8 gap-x-4 text-lg text-text-100 border-2 border-text-200 rounded-lg leading-none py-2 xxs:px-4 px-2">
-              {renderedLinks.map(({ title, href }) => (
-                <AppLink className="leading-none" to={href} key={title}>
-                  {title}
-                </AppLink>
-              ))}
-            </ul>
-          )}
+          <div className="flex gap-x-4 ml-auto">
+            {!!renderedLinks.length && (
+              <ul className="flex xxs:gap-x-8 gap-x-4 text-lg text-text-100 border-2 border-text-200 rounded-lg leading-none py-2 xxs:px-4 px-2">
+                {renderedLinks.map(({ title, href }) => (
+                  <li key={title}>
+                    <AppLink className="leading-none" to={href}>
+                      {title}
+                    </AppLink>
+                  </li>
+                ))}
+              </ul>
+            )}
 
-          {!!user && (
-            <Button
-              variant="underline"
-              className="ml-auto"
-              onClick={() => handleSignOut()}
-            >
-              Выйти
-            </Button>
-          )}
+            {!!user && (
+              <Button variant="underline" onClick={() => handleSignOut()}>
+                Выйти
+              </Button>
+            )}
 
-          <ThemeSwitcher className="ml-2 xs:block hidden" />
+            <ThemeSwitcher />
+          </div>
         </header>
       </Container>
     </div>
