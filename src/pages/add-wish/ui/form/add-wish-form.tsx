@@ -21,7 +21,7 @@ const AddWishForm = () => {
 
   return (
     <form onSubmit={onSubmit}>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid lg:grid-cols-2 grid-cols-1 gap-4">
         <Input
           label="Название"
           placeholder="Введите название"
@@ -61,7 +61,7 @@ const AddWishForm = () => {
           label="Описание"
           placeholder="Введите описание вашего желания(максимум 150 символов)"
           id="description"
-          className="col-span-2"
+          className="lg:col-span-2"
           maxLength={150}
           rows={3}
           {...register("description")}

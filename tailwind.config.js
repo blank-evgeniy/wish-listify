@@ -16,6 +16,7 @@ export default {
         header: "var(--header)",
         container: "var(--container)",
         "input-h": "var(--input-h)",
+        "mobile-nav-h": "var(--mobile-nav-h)",
       },
       colors: {
         primary: {

@@ -2,15 +2,16 @@ import { Link, useLocation } from "react-router";
 import { twMerge } from "tailwind-merge";
 import { sidebarLinks } from "../model/data";
 import { memo } from "react";
+import { SignOutButton } from "@/features/auth";
 
 export const Sidebar = memo(() => {
   const location = useLocation();
   const pathname = location.pathname;
 
   return (
-    <aside className="w-[240px] h-[calc(100vh-var(--header))] pb-4">
-      <nav className="h-full fixed">
-        <ul className="flex flex-col gap-y-4 pt-8">
+    <aside className="w-[240px] h-[calc(100vh-var(--header))] pb-4 md:block hidden">
+      <nav className="h-[calc(100vh-var(--header)-32px)] fixed">
+        <ul className="flex flex-col gap-y-4 pt-8 h-full">
           {sidebarLinks.map(({ title, href, Icon }) => {
             const isActive = pathname.startsWith(href);
 
@@ -36,6 +37,10 @@ export const Sidebar = memo(() => {
               </li>
             );
           })}
+
+          <li className="mt-auto">
+            <SignOutButton />
+          </li>
         </ul>
       </nav>
     </aside>

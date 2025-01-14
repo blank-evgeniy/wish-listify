@@ -2,13 +2,10 @@ import Container from "@/shared/ui/container";
 import Logo from "./logo";
 import { authLinks } from "../model/data";
 import { useUser } from "@/app/providers/user";
-import Button from "@/shared/ui/button";
-import { useSignOut } from "@/features/auth";
 import { AppLink } from "@/shared/ui/link";
 import { ThemeSwitcher } from "@/widgets/theme-switcher";
 
 export const Header = () => {
-  const { handleSignOut } = useSignOut();
   const { user, loading } = useUser();
 
   const renderedLinks = authLinks.filter(
@@ -21,7 +18,9 @@ export const Header = () => {
         <header className="h-header flex items-center gap-x-2">
           <Logo />
 
-          <div className="flex gap-x-4 ml-auto">
+          <div className="flex gap-x-4 items-center ml-auto">
+            <ThemeSwitcher />
+
             {!!renderedLinks.length && (
               <ul className="flex xxs:gap-x-8 gap-x-4 text-lg text-text-100 border-2 border-text-200 rounded-lg leading-none py-2 xxs:px-4 px-2">
                 {renderedLinks.map(({ title, href }) => (
@@ -33,14 +32,6 @@ export const Header = () => {
                 ))}
               </ul>
             )}
-
-            {!!user && (
-              <Button variant="underline" onClick={() => handleSignOut()}>
-                Выйти
-              </Button>
-            )}
-
-            <ThemeSwitcher />
           </div>
         </header>
       </Container>

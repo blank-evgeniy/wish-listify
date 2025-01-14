@@ -15,7 +15,7 @@ const Paper = ({ className, children, color = "default" }: PaperProps) => {
   return (
     <div
       className={twMerge(
-        "p-6 shadow-inner rounded-xl",
+        "md:p-6 p-4 shadow-inner rounded-xl",
         paperColors[color],
         className
       )}

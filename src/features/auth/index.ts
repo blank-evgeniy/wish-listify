@@ -1,3 +1,4 @@
+export { SignOutButton } from "./ui/sign-out-button";
 export { GoogleAuthButton } from "./ui/google-auth-button";
 export { useCreateAccount } from "./api/use-create-account";
 export { usePasswordAuth } from "./api/use-password-auth";

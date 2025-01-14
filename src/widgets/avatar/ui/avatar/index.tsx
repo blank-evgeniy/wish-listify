@@ -11,11 +11,11 @@ interface AvatarProps {
   size?: keyof typeof sizes;
   className?: string;
   isLoading?: boolean;
-  avatarNumber: number;
+  avatarNumber?: number;
 }
 
 export const Avatar = ({
-  avatarNumber,
+  avatarNumber = 0,
   className,
   isLoading,
   size = "md",

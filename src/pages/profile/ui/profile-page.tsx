@@ -7,6 +7,7 @@ import { Loader } from "@/shared/ui/loader";
 import Input from "@/shared/ui/input";
 import { Avatar, AvatarPicker } from "@/widgets/avatar";
 import Paper from "@/shared/ui/paper";
+import { SignOutButton } from "@/features/auth";
 
 export const ProfilePage = () => {
   const { profile, isLoading: isLoadingProfile } = useProfile();
@@ -19,7 +20,7 @@ export const ProfilePage = () => {
       <main className="w-full">
         <Heading>Профиль</Heading>
 
-        <Paper className="my-8">
+        <Paper className="my-8 relative">
           {isLoadingProfile ? (
             <div className="w-full flex items-center justify-center my-16">
               <Loader />
@@ -27,6 +28,8 @@ export const ProfilePage = () => {
           ) : (
             <>
               <Avatar avatarNumber={profile?.avatarNumber ?? 0} size="lg" />
+
+              <SignOutButton className="md:hidden absolute right-4 top-4" />
               <p className="text-text-200 mt-4 font-medium">Выберите аватар:</p>
               <AvatarPicker
                 className="mt-2"
