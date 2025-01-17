@@ -1,7 +1,12 @@
 import { AppLink } from "@/shared/ui/link";
 import { navigationLinks } from "../model/data";
+import { useUser } from "@/app/providers/user";
 
 const MobileNavigation = () => {
+  const { user } = useUser();
+
+  if (!user) return null;
+
   return (
     <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-bg-300 h-mobile-nav-h z-20">
       <ul className="flex">

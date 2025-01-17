@@ -1,13 +1,9 @@
 import { WishDto } from "../../model/type";
-import EditIcon from "@/shared/assets/icons/edit";
-import DeleteIcon from "@/shared/assets/icons/delete";
 import { twMerge } from "tailwind-merge";
 import GiftIcon from "@/shared/assets/icons/gift";
 import { useDeleteWish } from "../../lib/use-delete-wish";
-import { IconButton } from "@/shared/ui/icon-button";
-import { IconLink } from "@/shared/ui/icon-link";
-import { RoutePath } from "@/app/config/routes";
 import { FallbackImage } from "@/shared/ui/fallback-image";
+import { WishCardFooter } from "./wish-card-footer";
 
 interface WishCardProps {
   data: WishDto;
@@ -21,49 +17,43 @@ export const WishCard = ({ data, className }: WishCardProps) => {
   return (
     <article
       className={twMerge(
-        "flex flex-col justify-between bg-bg-300 p-4 rounded-lg shadow",
+        "flex lg:flex-col justify-between bg-bg-300 sm:p-4 p-2 rounded-lg shadow relative",
         isLoading && "opacity-50 pointer-events-none animate-pulse",
         className
       )}
     >
-      <div>
+      <div className="flex lg:flex-col items-center xs:gap-x-4 gap-x-2 w-full">
         <FallbackImage
-          className="max-w-[420px] w-full aspect-square rounded-md bg-bg-200"
+          className="lg:max-w-[420px] xs:max-w-[120px] max-w-[80px] object-cover w-full aspect-square rounded-md bg-bg-200"
           placeholder={
             <GiftIcon className="h-full w-full p-4 text-text-200 grayscale" />
           }
           src={imgLink}
         />
-        <p className="text-lg font-semibold mt-2">{title}</p>
-        {!!price && <p className="text-xl font-bold">{price} ₽</p>}
-        {!!description && (
-          <p className="text-text-200 leading-none text-sm h-[42px] line-clamp-3">
-            {description}
-          </p>
-        )}
-        {!!srcLink && (
-          <a
-            href={srcLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-text-100 hover:opacity-80 transition-opacity text-base leading-none h-4 line-clamp-1 mt-2"
-          >
-            ссылка на источник
-          </a>
-        )}
+        <div className="w-full h-full">
+          <p className="xs:text-lg font-semibold mt-2 leading-none">{title}</p>
+          {!!price && <p className="xs:text-xl font-bold">{price} ₽</p>}
+          {!!description && (
+            <p className="text-text-200 leading-none text-sm h-[42px] line-clamp-3">
+              {description}
+            </p>
+          )}
+          {!!srcLink && (
+            <a
+              href={srcLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-text-100 hover:opacity-80 transition-opacity text-base leading-none h-4 line-clamp-1 mt-2"
+            >
+              ссылка
+            </a>
+          )}
+        </div>
       </div>
-      <footer className="flex justify-end gap-x-2 pt-2">
-        <IconLink to={RoutePath.ADD_WISH} size="sm" accentColor="default">
-          <EditIcon className="w-full h-full" />
-        </IconLink>
-        <IconButton
-          size="sm"
-          accentColor="danger"
-          onClick={() => handleDeleteWish(data.id)}
-        >
-          <DeleteIcon className="w-full h-full" />
-        </IconButton>
-      </footer>
+      <WishCardFooter
+        className="pt-2 lg:static absolute right-2 bottom-2"
+        onDelete={() => handleDeleteWish(data.id)}
+      />
     </article>
   );
 };
