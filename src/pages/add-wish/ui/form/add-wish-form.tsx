@@ -4,17 +4,27 @@ import Button from "@/shared/ui/button";
 import { AppLink } from "@/shared/ui/link";
 import { RoutePath } from "@/app/config/routes";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useAddWish } from "@/entities/wish";
+import { useNavigate } from "react-router";
 import { FormData } from "../../model/type";
 
 const AddWishForm = () => {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
 
+  const { handleAddWish, isLoading, isSuccess } = useAddWish();
+
+  if (isSuccess) {
+    navigate(RoutePath.WISHLIST);
+  }
+
   const submit: SubmitHandler<FormData> = (data) => {
-    console.log(data);
+    handleAddWish(data);
   };
 
   const onSubmit = handleSubmit(submit);
@@ -34,13 +44,13 @@ const AddWishForm = () => {
           label="Ссылка на подарок"
           placeholder="Вставьте ссылку, где можно купить подарок"
           id="link"
-          {...register("src_link")}
+          {...register("srcLink")}
         />
         <Input
           label="Ссылка на картинку"
           placeholder="Вставьте ссылку на изображение подарка"
           id="image"
-          {...register("img_link")}
+          {...register("imgLink")}
         />
         <Input
           label="Стоимость"
@@ -59,11 +69,11 @@ const AddWishForm = () => {
         />
         <Textarea
           label="Описание"
-          placeholder="Введите описание вашего желания(максимум 150 символов)"
+          placeholder="Введите описание вашего желания(максимум 100 символов)"
           id="description"
           className="lg:col-span-2"
-          maxLength={150}
-          rows={3}
+          maxLength={100}
+          rows={2}
           {...register("description")}
         />
       </div>
@@ -71,7 +81,9 @@ const AddWishForm = () => {
         <AppLink to={RoutePath.WISHLIST} variant="outlined">
           Отменить
         </AppLink>
-        <Button variant="filled">Сохранить</Button>
+        <Button variant="filled" isLoading={isLoading}>
+          Сохранить
+        </Button>
       </div>
     </form>
   );

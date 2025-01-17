@@ -1,5 +1,5 @@
 import { queryClient } from "@/shared/api/query-client";
-import { profileApi } from "./api";
+import { profileApi } from "../api/api";
 import { ProfileDto } from "../model/type";
 
 /**

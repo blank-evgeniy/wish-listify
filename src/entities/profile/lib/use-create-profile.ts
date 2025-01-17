@@ -1,6 +1,6 @@
 import { useUser } from "@/app/providers/user";
 import { useMutation } from "@tanstack/react-query";
-import { profileApi } from "./api";
+import { profileApi } from "../api/api";
 import { ProfileDto } from "../model/type";
 
 export const useCreateProfile = () => {

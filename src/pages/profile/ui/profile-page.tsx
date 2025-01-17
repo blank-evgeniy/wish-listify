@@ -22,7 +22,7 @@ export const ProfilePage = () => {
 
         <Paper className="my-8 relative">
           {isLoadingProfile ? (
-            <div className="w-full flex items-center justify-center my-16">
+            <div className="w-full flex items-center justify-center py-16">
               <Loader />
             </div>
           ) : (

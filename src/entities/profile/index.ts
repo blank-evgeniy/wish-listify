@@ -1,7 +1,7 @@
-export { useCheckProfile } from "./api/use-check-profile";
-export { useCreateProfile } from "./api/use-create-profile";
-export { useProfile } from "./api/use-profile";
-export { useUpdateProfile } from "./api/use-update-profile";
+export { useCheckProfile } from "./lib/use-check-profile";
+export { useCreateProfile } from "./lib/use-create-profile";
+export { useProfile } from "./lib/use-profile";
+export { useUpdateProfile } from "./lib/use-update-profile";
 
 export type { Profile } from "./model/type";
 export type { EditableProfile } from "./model/type";

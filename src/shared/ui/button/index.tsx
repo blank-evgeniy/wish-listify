@@ -1,6 +1,8 @@
 import { twMerge } from "tailwind-merge";
 import { Loader } from "./loader";
 
+const defaultStyle = "flex items-center justify-center gap-x-2 font-medium";
+
 const buttonVariants = {
   filled:
     "bg-text-100 text-accent-100 hover:bg-text-200 hover:text-accent-100 transition-colors rounded-3xl",
@@ -34,8 +36,6 @@ const Button = ({
   size = "md",
   ...props
 }: ButtonProps) => {
-  const defaultStyle = "flex items-center justify-center gap-x-2 font-medium";
-
   return (
     <button
       disabled={disabled || isLoading}

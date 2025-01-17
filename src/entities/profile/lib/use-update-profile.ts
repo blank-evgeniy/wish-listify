@@ -2,7 +2,7 @@ import { auth } from "@/shared/config/firebase";
 import { updateProfile } from "firebase/auth";
 import { useMutation } from "@tanstack/react-query";
 import { ProfileDto } from "../model/type";
-import { profileApi } from "./api";
+import { profileApi } from "../api/api";
 import { queryClient } from "@/shared/api/query-client";
 import { optimisticUpdateProfile } from "./optimistic-update-profile";
 

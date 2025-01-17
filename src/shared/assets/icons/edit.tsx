@@ -1,4 +1,4 @@
-const EditIcon = ({ className }: { className: string }) => {
+const EditIcon = ({ className }: { className?: string }) => {
   return (
     <svg
       className={className}

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { profileApi } from "./api";
 import { useUser } from "@/app/providers/user";
+import { profileApi } from "../api/api";
 
 export const useCheckProfile = () => {
   const { user } = useUser();

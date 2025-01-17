@@ -17,7 +17,7 @@ const linkSizes = {
   lg: "text-2xl px-6 py-3",
 };
 
-interface AppLinkProps {
+interface AppLinkProps extends React.HTMLAttributes<HTMLAnchorElement> {
   variant?: keyof typeof linkVariants;
   size?: keyof typeof linkSizes;
   className?: string;
@@ -31,6 +31,7 @@ export const AppLink = ({
   to,
   variant = "text",
   size = "md",
+  ...props
 }: AppLinkProps) => {
   const defaultStyle = "flex items-center justify-center gap-x-2 font-medium";
 
@@ -43,6 +44,7 @@ export const AppLink = ({
         linkVariants[variant],
         className
       )}
+      {...props}
     >
       {children}
     </Link>
