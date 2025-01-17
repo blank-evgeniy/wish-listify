@@ -2,7 +2,6 @@ import Container from "@/shared/ui/container";
 import { Heading } from "@/shared/ui/heading";
 import { Sidebar } from "@/widgets/sidebar";
 import FriendImage from "@/shared/assets/images/friends.png";
-import Button from "@/shared/ui/button";
 import Paper from "@/shared/ui/paper";
 
 export const FriendsPage = () => {
@@ -19,9 +18,6 @@ export const FriendsPage = () => {
           <p className="text-text-200 text-lg">
             {"Ваш список друзей пока пуст :("}
           </p>
-          <Button variant="outlined" size="sm">
-            Добавить друзей
-          </Button>
         </Paper>
       </main>
     </Container>

@@ -24,8 +24,6 @@ export const wishApi = {
       );
       const documents: WishDto[] = [];
 
-      console.log(querySnapshot.docs);
-
       if (querySnapshot.empty) return documents;
 
       querySnapshot.forEach((doc) => {
