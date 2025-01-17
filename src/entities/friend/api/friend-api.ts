@@ -3,7 +3,7 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import { FriendDto } from "../model/type";
 import { WishDto } from "@/entities/wish";
 
-export const profileApi = {
+export const friendApi = {
   baseCollection: "friends",
 
   getQueryKey: function () {

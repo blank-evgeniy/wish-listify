@@ -11,10 +11,12 @@ import {
 } from "firebase/firestore";
 import { FriendDto } from "../model/type";
 
-export const profileApi = {
+export const friendRequestApi = {
   baseCollection: "friends",
 
-  getQueryKey: () => [profileApi.baseCollection, "requests"],
+  getQueryKey: function () {
+    return [this.baseCollection, "requests"];
+  },
 
   getFriendRequestList: async function (uid: string) {
     try {
