@@ -6,12 +6,10 @@ import Paper from "@/shared/ui/paper";
 import { AppLink } from "@/shared/ui/link";
 import { RoutePath } from "@/app/config/routes";
 import { useWishlist, WishCard } from "@/entities/wish";
+import { Loader } from "@/shared/ui/loader";
 
 export const WishlistPage = () => {
   const { wishlist, isLoading, error } = useWishlist();
-
-  if (isLoading) return null;
-  if (error) return null;
 
   return (
     <Container className="flex gap-x-8 min-h-[calc(100vh-var(--header))]">
@@ -19,19 +17,31 @@ export const WishlistPage = () => {
       <main className="w-full">
         <Heading>Список желаний</Heading>
         <Paper className="flex flex-col items-center justify-center gap-y-8 my-8">
-          {wishlist?.length === 0 ? (
+          {isLoading && (
+            <div className="py-10">
+              <Loader />
+            </div>
+          )}
+          {error && (
+            <p className="text-red-500">
+              Произошла ошибка при загрузке списка желаний.
+            </p>
+          )}
+          {wishlist?.length === 0 && !isLoading && !error && (
             <>
               <img
                 src={WishlistImage}
                 className="w-[420px] aspect-square opacity-80"
+                alt="Пустой список желаний"
               />
               <p className="text-text-200 text-lg">
                 {"Ваш список желаний пока пуст :("}
               </p>
             </>
-          ) : (
+          )}
+          {wishlist?.length && !isLoading && !error && (
             <div className="grid lg:grid-cols-4 grid-cols-1 gap-x-4 gap-y-2 w-full">
-              {wishlist?.map((wish) => (
+              {wishlist.map((wish) => (
                 <WishCard key={wish.id} data={wish} />
               ))}
             </div>
