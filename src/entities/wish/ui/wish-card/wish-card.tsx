@@ -51,6 +51,7 @@ export const WishCard = ({ data, className }: WishCardProps) => {
         </div>
       </div>
       <WishCardFooter
+        wishId={data.id}
         className="pt-2 lg:static absolute right-2 bottom-2"
         onDelete={() => handleDeleteWish(data.id)}
       />

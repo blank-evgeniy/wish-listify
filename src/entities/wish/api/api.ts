@@ -4,6 +4,7 @@ import {
   collection,
   deleteDoc,
   doc,
+  getDoc,
   getDocs,
   updateDoc,
 } from "firebase/firestore";
@@ -37,6 +38,21 @@ export const wishApi = {
     }
   },
 
+  getWish: async function (uid: string, wishId: string) {
+    try {
+      const docRef = doc(db, "users", uid, this.baseCollection, wishId);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        return docSnap.data() as WishDto;
+      } else {
+        throw new Error("Wish not found");
+      }
+    } catch (error) {
+      console.error("Ошибка при получении желания:", error);
+    }
+  },
+
   addWish: async function (uid: string, data: Omit<WishDto, "id">) {
     try {
       await addDoc(collection(db, "users", uid, this.baseCollection), data);
@@ -48,7 +64,7 @@ export const wishApi = {
   updateWish: async function (
     uid: string,
     wishId: string,
-    data: Omit<WishDto, "id">
+    data: Partial<WishDto>
   ) {
     try {
       const wishRef = doc(db, "users", uid, this.baseCollection, wishId);
