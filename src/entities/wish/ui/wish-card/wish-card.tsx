@@ -7,6 +7,7 @@ import { useDeleteWish } from "../../lib/use-delete-wish";
 import { IconButton } from "@/shared/ui/icon-button";
 import { IconLink } from "@/shared/ui/icon-link";
 import { RoutePath } from "@/app/config/routes";
+import { FallbackImage } from "@/shared/ui/fallback-image";
 
 interface WishCardProps {
   data: WishDto;
@@ -26,18 +27,13 @@ export const WishCard = ({ data, className }: WishCardProps) => {
       )}
     >
       <div>
-        {imgLink ? (
-          <img
-            alt={title}
-            src={imgLink}
-            className="max-w-[420px] w-full aspect-square rounded-md"
-          />
-        ) : (
-          <div className="max-w-[420px] aspect-square bg-bg-200 rounded flex items-center justify-center">
+        <FallbackImage
+          className="max-w-[420px] w-full aspect-square rounded-md bg-bg-200"
+          placeholder={
             <GiftIcon className="h-full w-full p-4 text-text-200 grayscale" />
-          </div>
-        )}
-
+          }
+          src={imgLink}
+        />
         <p className="text-lg font-semibold mt-2">{title}</p>
         {!!price && <p className="text-xl font-bold">{price} ₽</p>}
         {!!description && (
