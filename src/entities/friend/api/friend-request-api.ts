@@ -4,6 +4,7 @@ import {
   collection,
   deleteDoc,
   doc,
+  getDoc,
   getDocs,
   query,
   updateDoc,
@@ -41,10 +42,25 @@ export const friendRequestApi = {
 
   sendFriendRequest: async function (uid: string, friendId: string) {
     try {
-      const newFriendData = { uid: friendId, requestAccepted: false };
+      if (uid === friendId)
+        throw new Error("Нельзя отправить заявку самому себе");
+
+      const friendsRef = collection(db, "users", uid, this.baseCollection);
+      const q = query(friendsRef, where("uid", "==", friendId));
+
+      const querySnapshot = await getDocs(q);
+
+      if (!querySnapshot.empty) throw new Error("Заявка уже отправлена");
+
+      const userRef = doc(db, "users", friendId);
+      const userDoc = await getDoc(userRef);
+
+      if (!userDoc.exists()) throw new Error("Пользователь не найден");
+
+      const newFriendData = { uid: uid, requestAccepted: false };
 
       await addDoc(
-        collection(db, "users", uid, this.baseCollection),
+        collection(db, "users", friendId, this.baseCollection),
         newFriendData
       );
     } catch (error) {

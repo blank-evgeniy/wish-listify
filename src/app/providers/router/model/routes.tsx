@@ -8,6 +8,7 @@ import { RoutePath } from "@/app/config/routes";
 import { NotFoundPage } from "@/pages/not-found";
 import { AddWishPage } from "@/pages/add-wish";
 import { EditWishPage } from "@/pages/edit-wish";
+import { FriendsRequest } from "@/pages/friend-request";
 
 interface Route {
   path: RoutePath;
@@ -54,6 +55,11 @@ export const routes: Route[] = [
   {
     path: RoutePath.PROFILE,
     element: <ProfilePage />,
+    authOnly: true,
+  },
+  {
+    path: RoutePath.FRIEND_REQUEST,
+    element: <FriendsRequest />,
     authOnly: true,
   },
   {

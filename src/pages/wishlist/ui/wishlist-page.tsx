@@ -39,7 +39,7 @@ export const WishlistPage = () => {
               </p>
             </>
           )}
-          {wishlist?.length && !isLoading && !error && (
+          {!!wishlist?.length && !isLoading && !error && (
             <div className="grid lg:grid-cols-4 grid-cols-1 gap-x-4 gap-y-2 w-full">
               {wishlist.map((wish) => (
                 <WishCard key={wish.id} data={wish} />

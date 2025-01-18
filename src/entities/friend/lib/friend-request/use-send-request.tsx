@@ -21,5 +21,6 @@ export const useSendRequest = () => {
     isLoading: mutation.isPending,
     error: mutation.error,
     isSuccess: mutation.isSuccess,
+    isError: mutation.isError,
   };
 };
