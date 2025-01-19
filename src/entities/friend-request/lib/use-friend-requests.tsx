@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { useUser } from "@/app/providers/user";
-import { friendRequestApi } from "../../api/friend-request-api";
+import { useAuth } from "@/app/providers/auth";
+import { friendRequestApi } from "../api/api";
 
 export const useFriendRequests = () => {
-  const { user } = useUser();
+  const { user } = useAuth();
 
   const { data, isLoading, error } = useQuery({
     queryKey: [...friendRequestApi.getQueryKey()],
