@@ -1,10 +1,10 @@
 import { useMutation } from "@tanstack/react-query";
-import { useUser } from "@/app/providers/user";
+import { useAuth } from "@/app/providers/auth";
 import { wishApi } from "../api/api";
 import { queryClient } from "@/shared/api/query-client";
 
 export const useDeleteWish = () => {
-  const { user } = useUser();
+  const { user } = useAuth();
 
   const mutation = useMutation({
     mutationFn: (wishId: string) => wishApi.deleteWish(user?.uid || "", wishId),

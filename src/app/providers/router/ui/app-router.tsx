@@ -1,13 +1,13 @@
 import { Suspense } from "react";
 import { routes } from "../model/routes";
 import { Route, Routes } from "react-router";
-import { useUser } from "../../user";
 import PrivateRoute from "./private-route";
 import PublicRoute from "./public-route";
 import { Loader } from "@/shared/ui/loader";
+import { useAuth } from "@/app/providers/auth";
 
 export const AppRouter = () => {
-  const { user, loading } = useUser();
+  const { user, loading } = useAuth();
   const isAuthenticated = !!user;
 
   if (loading) {

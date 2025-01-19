@@ -1,7 +1,7 @@
 import { ReactNode, useLayoutEffect, useState } from "react";
 import { Theme } from "../model/type";
 import { ThemeContext } from "../model/theme-context";
-import { LOCAL_STORAGE_THEME_KEY } from "../model/const";
+import { LOCAL_STORAGE_THEME_KEY } from "@/shared/consts";
 
 const defaultTheme =
   (localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme) || Theme.LIGHT;

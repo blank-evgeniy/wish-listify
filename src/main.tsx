@@ -5,7 +5,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { HashRouter } from "react-router";
 
 import { queryClient } from "@/shared/api/query-client.ts";
-import { UserProvider } from "@/app/providers/user";
+import { AuthProvider } from "@/app/providers/auth";
 import { ThemeProvider } from "./app/providers/theme";
 import App from "@/app/App.tsx";
 
@@ -15,10 +15,10 @@ createRoot(document.getElementById("root")!).render(
   <HashRouter>
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
-        <UserProvider>
+        <AuthProvider>
           <App />
           <ReactQueryDevtools initialIsOpen={false} />
-        </UserProvider>
+        </AuthProvider>
       </ThemeProvider>
     </QueryClientProvider>
   </HashRouter>

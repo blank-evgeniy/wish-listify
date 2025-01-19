@@ -1,12 +1,12 @@
 import Container from "@/shared/ui/container";
 import Logo from "./logo";
 import { authLinks } from "../model/data";
-import { useUser } from "@/app/providers/user";
+import { useAuth } from "@/app/providers/auth";
 import { AppLink } from "@/shared/ui/link";
 import { ThemeSwitcher } from "@/widgets/theme-switcher";
 
 export const Header = () => {
-  const { user, loading } = useUser();
+  const { user, loading } = useAuth();
 
   const renderedLinks = authLinks.filter(
     ({ href }) => !loading && !user && href

@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { useUser } from "@/app/providers/user";
+import { useAuth } from "@/app/providers/auth";
 import { wishApi } from "../api/api";
 
 export const useWish = (wishId: string) => {
-  const { user } = useUser();
+  const { user } = useAuth();
 
   const { data, isLoading, error } = useQuery({
     queryKey: [wishApi.getQueryKey(), wishId],

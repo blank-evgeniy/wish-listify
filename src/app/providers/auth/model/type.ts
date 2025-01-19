@@ -1,5 +1,5 @@
 import { User } from "firebase/auth";
 
-export type UserContextType = {
+export type AuthContextType = {
   user: User | null;
 };

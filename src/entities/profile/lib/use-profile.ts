@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { profileApi } from "../api/api";
-import { useUser } from "@/app/providers/user";
+import { useAuth } from "@/app/providers/auth";
 
 export const useProfile = () => {
-  const { user } = useUser();
+  const { user } = useAuth();
 
   const { data, isLoading, error } = useQuery({
     queryKey: [profileApi.getQueryKey()],

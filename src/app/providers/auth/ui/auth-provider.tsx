@@ -1,9 +1,9 @@
 import { useState, useEffect, ReactNode } from "react";
 import { auth } from "@/shared/config/firebase";
 import { User } from "firebase/auth";
-import { UserContext } from "../model/user-context";
+import { AuthContext } from "../model/auth-context";
 
-export const UserProvider = ({ children }: { children: ReactNode }) => {
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
@@ -15,6 +15,6 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ user }}>{children}</UserContext.Provider>
+    <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>
   );
 };

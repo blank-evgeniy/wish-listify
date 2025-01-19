@@ -1,9 +1,9 @@
 import { AppLink } from "@/shared/ui/link";
 import { navigationLinks } from "../model/data";
-import { useUser } from "@/app/providers/user";
+import { useAuth } from "@/app/providers/auth";
 
 const MobileNavigation = () => {
-  const { user } = useUser();
+  const { user } = useAuth();
 
   if (!user) return null;
 

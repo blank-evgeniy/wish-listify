@@ -1,10 +1,10 @@
-import { useUser } from "@/app/providers/user";
+import { useAuth } from "@/app/providers/auth";
 import { useMutation } from "@tanstack/react-query";
 import { profileApi } from "../api/api";
 import { ProfileDto } from "../model/type";
 
 export const useCreateProfile = () => {
-  const { user } = useUser();
+  const { user } = useAuth();
 
   const mutation = useMutation({
     mutationFn: (profileData: ProfileDto) =>

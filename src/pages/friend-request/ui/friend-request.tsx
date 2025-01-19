@@ -1,5 +1,5 @@
 import { RoutePath } from "@/app/config/routes";
-import { useSendRequest } from "@/entities/friend/lib/friend-request/use-send-request";
+import { useSendRequest } from "@/entities/friend-request";
 import { Loader } from "@/shared/ui/loader";
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router";
