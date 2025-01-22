@@ -1,12 +1,13 @@
 import Container from "@/shared/ui/container";
 import { Heading } from "@/shared/ui/heading";
 import { Sidebar } from "@/widgets/sidebar";
-import FriendImage from "@/shared/assets/images/friends.png";
+
 import Paper from "@/shared/ui/paper";
 import { CopyButton } from "@/shared/ui/copy-button";
 import { useAuth } from "@/app/providers/auth";
 import { RoutePath } from "@/app/config/routes";
 import { FriendRequestList } from "./friend-request-list";
+import { FriendList } from "./friend-list";
 
 export const FriendsPage = () => {
   const { user } = useAuth();
@@ -34,13 +35,7 @@ export const FriendsPage = () => {
             </div>
           )}
           <FriendRequestList className="mt-4" />
-          <img
-            src={FriendImage}
-            className="w-[420px] aspect-square opacity-80"
-          />
-          <p className="text-text-200 text-lg">
-            {"Ваш список друзей пока пуст :("}
-          </p>
+          <FriendList className="mt-8" />
         </Paper>
       </main>
     </Container>
