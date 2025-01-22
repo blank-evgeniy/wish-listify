@@ -9,6 +9,7 @@ import { NotFoundPage } from "@/pages/not-found";
 import { AddWishPage } from "@/pages/add-wish";
 import { EditWishPage } from "@/pages/edit-wish";
 import { FriendsRequest } from "@/pages/friend-request";
+import { UserPage } from "@/pages/user/ui/user-page";
 
 interface Route {
   path: RoutePath;
@@ -60,6 +61,11 @@ export const routes: Route[] = [
   {
     path: RoutePath.FRIEND_REQUEST,
     element: <FriendsRequest />,
+    authOnly: true,
+  },
+  {
+    path: RoutePath.USER_PAGE,
+    element: <UserPage />,
     authOnly: true,
   },
   {

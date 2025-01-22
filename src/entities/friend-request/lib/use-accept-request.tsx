@@ -13,6 +13,9 @@ export const useAcceptRequest = () => {
       queryClient.invalidateQueries({
         queryKey: [...friendRequestApi.getQueryKey()],
       });
+      queryClient.invalidateQueries({
+        queryKey: [friendRequestApi.friendsFieldName],
+      });
     },
   });
 

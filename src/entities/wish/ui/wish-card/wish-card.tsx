@@ -1,5 +1,5 @@
 import { WishDto } from "../../model/type";
-import { twMerge } from "tailwind-merge";
+import { twJoin, twMerge } from "tailwind-merge";
 import GiftIcon from "@/shared/assets/icons/gift";
 import { useDeleteWish } from "../../lib/use-delete-wish";
 import { FallbackImage } from "@/shared/ui/fallback-image";
@@ -7,10 +7,11 @@ import { WishCardFooter } from "./wish-card-footer";
 
 interface WishCardProps {
   data: WishDto;
+  withAction?: boolean;
   className?: string;
 }
 
-export const WishCard = ({ data, className }: WishCardProps) => {
+export const WishCard = ({ data, className, withAction }: WishCardProps) => {
   const { title, srcLink, imgLink, price, description } = data;
   const { handleDeleteWish, isLoading } = useDeleteWish();
 
@@ -52,7 +53,10 @@ export const WishCard = ({ data, className }: WishCardProps) => {
       </div>
       <WishCardFooter
         wishId={data.id}
-        className="pt-2 lg:static absolute right-2 bottom-2"
+        className={twJoin(
+          "pt-2 lg:static absolute right-2 bottom-2",
+          withAction ? "" : "hidden"
+        )}
         onDelete={() => handleDeleteWish(data.id)}
       />
     </article>
