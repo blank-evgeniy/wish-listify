@@ -1,9 +1,11 @@
+import { ProfileDto } from "@/entities/profile";
 import { db } from "@/shared/config/firebase";
 import {
   arrayRemove,
   arrayUnion,
   doc,
   getDoc,
+  runTransaction,
   updateDoc,
 } from "firebase/firestore";
 
@@ -20,12 +22,25 @@ export const friendRequestApi = {
       const userRef = doc(db, "users", uid);
       const userDoc = await getDoc(userRef);
 
-      if (!userDoc.exists()) throw new Error("Пользователь не найден");
+      if (!userDoc.exists()) throw new Error("Пользователь не найден");
 
       const friendRequests = (userDoc.data()?.[this.requestsFieldName] ||
         []) as string[];
 
-      return friendRequests;
+      if (friendRequests.length === 0) return [];
+
+      const userRefs = friendRequests.map((friendId) =>
+        doc(db, "users", friendId)
+      );
+
+      //TODO: заменить на решение из Firestore
+      const userDocs = await Promise.all(userRefs.map((ref) => getDoc(ref)));
+
+      const usersData: ProfileDto[] = userDocs
+        .filter((friendDoc) => friendDoc.exists())
+        .map((friendDoc) => friendDoc.data() as ProfileDto);
+
+      return usersData;
     } catch (error) {
       console.error("Ошибка при получении списка заявок:", error);
     }
@@ -45,7 +60,7 @@ export const friendRequestApi = {
         [this.requestsFieldName]: arrayUnion(senderId),
       });
     } catch (error) {
-      console.error("Ошибка при отправлении заявки", error);
+      console.error("Ошибка при отправлении заявки:", error);
     }
   },
 
@@ -54,17 +69,23 @@ export const friendRequestApi = {
       const senderRef = doc(db, "users", senderId);
       const receiverRef = doc(db, "users", receiverId);
 
-      await Promise.all([
-        updateDoc(senderRef, {
+      await runTransaction(db, async (transaction) => {
+        transaction.update(senderRef, {
           [this.friendsFieldName]: arrayUnion(receiverId),
-        }),
-        updateDoc(receiverRef, {
+        });
+
+        transaction.update(receiverRef, {
           [this.friendsFieldName]: arrayUnion(senderId),
-        }),
-        updateDoc(receiverRef, {
+        });
+
+        transaction.update(receiverRef, {
+          [this.requestsFieldName]: arrayRemove(senderId),
+        });
+
+        transaction.update(senderRef, {
           [this.requestsFieldName]: arrayRemove(receiverId),
-        }),
-      ]);
+        });
+      });
     } catch (error) {
       console.error("Ошибка при принятии заявки", error);
     }

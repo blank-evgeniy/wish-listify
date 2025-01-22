@@ -8,7 +8,7 @@ export const useAcceptRequest = () => {
 
   const mutation = useMutation({
     mutationFn: (friendId: string) =>
-      friendRequestApi.acceptFriendRequest(user?.uid || "", friendId),
+      friendRequestApi.acceptFriendRequest(friendId, user?.uid || ""),
     onSettled: () => {
       queryClient.invalidateQueries({
         queryKey: [...friendRequestApi.getQueryKey()],

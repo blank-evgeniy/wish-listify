@@ -16,7 +16,8 @@ const buttonAccentColors = {
     "text-text-100 hover:text-green-400 focus:text-green-400 transition-colors",
 };
 
-interface IconButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
+interface IconButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children?: React.ReactNode;
   size?: keyof typeof buttonSizes;
   accentColor?: keyof typeof buttonAccentColors;
