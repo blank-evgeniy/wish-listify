@@ -2,6 +2,7 @@ import { twMerge } from "tailwind-merge";
 import { FriendCard, useFriendList } from "@/entities/friend";
 import FriendImage from "@/shared/assets/images/friends.png";
 import { Badge } from "@/shared/ui/badge";
+import { FriendCardSkeleton, SkeletonLine } from "@/widgets/skeleton";
 
 interface FriendListProps {
   className?: string;
@@ -10,7 +11,19 @@ interface FriendListProps {
 export const FriendList = ({ className }: FriendListProps) => {
   const { friends, isLoading, error } = useFriendList();
 
-  if (isLoading || error || !friends) return null;
+  if (isLoading)
+    return (
+      <div className={twMerge("w-full flex flex-col", className)}>
+        <SkeletonLine className="text-2xl w-1/3" />
+        <div className="flex flex-col gap-4 mt-4">
+          <FriendCardSkeleton />
+          <FriendCardSkeleton />
+          <FriendCardSkeleton />
+        </div>
+      </div>
+    );
+
+  if (error || !friends) return null;
 
   if (friends.length === 0)
     return (

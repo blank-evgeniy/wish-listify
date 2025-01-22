@@ -6,7 +6,7 @@ import Paper from "@/shared/ui/paper";
 import { AppLink } from "@/shared/ui/link";
 import { RoutePath } from "@/app/config/routes";
 import { useWishlist, WishCard } from "@/entities/wish";
-import { Loader } from "@/shared/ui/loader";
+import { WishCardSkeleton } from "@/widgets/skeleton/";
 
 export const WishlistPage = () => {
   const { wishlist, isLoading, error } = useWishlist();
@@ -18,8 +18,11 @@ export const WishlistPage = () => {
         <Heading>Список желаний</Heading>
         <Paper className="flex flex-col items-center justify-center gap-y-8 my-8">
           {isLoading && (
-            <div className="py-10">
-              <Loader />
+            <div className="grid lg:grid-cols-4 grid-cols-1 gap-x-4 gap-y-2 w-full">
+              <WishCardSkeleton />
+              <WishCardSkeleton />
+              <WishCardSkeleton />
+              <WishCardSkeleton />
             </div>
           )}
           {error && (

@@ -1,6 +1,6 @@
 import { useUserWishlist } from "@/entities/user";
 import { WishCard } from "@/entities/wish";
-import { Loader } from "@/shared/ui/loader";
+import { WishCardSkeleton } from "@/widgets/skeleton";
 import { twMerge } from "tailwind-merge";
 
 interface UserWishlistProps {
@@ -14,9 +14,15 @@ export const UserWishlist = ({ className, uid }: UserWishlistProps) => {
   if (isLoading || !wishlist)
     return (
       <div
-        className={twMerge("py-10 flex justify-center items-center", className)}
+        className={twMerge(
+          "grid lg:grid-cols-4 grid-cols-1 gap-x-4 gap-y-2 w-full",
+          className
+        )}
       >
-        <Loader />
+        <WishCardSkeleton />
+        <WishCardSkeleton />
+        <WishCardSkeleton />
+        <WishCardSkeleton />
       </div>
     );
 
