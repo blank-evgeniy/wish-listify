@@ -8,15 +8,18 @@ export const profileApi = {
   getQueryKey: () => [profileApi.baseCollection, "profile"],
 
   getProfile: async (id: string) => {
-    const userRef = doc(db, profileApi.baseCollection, id);
-    const userDoc = await getDoc(userRef);
+    try {
+      const userRef = doc(db, profileApi.baseCollection, id);
+      const userDoc = await getDoc(userRef);
 
-    if (userDoc.exists()) {
-      const userData = userDoc.data() as ProfileDto;
-      return userData;
-    } else {
-      console.log("Пользователь не найден!");
-      return undefined;
+      if (userDoc.exists()) {
+        const userData = userDoc.data() as ProfileDto;
+        return userData;
+      } else {
+        throw new Error("User was not found");
+      }
+    } catch (error) {
+      console.error("Error getting user profile:", error);
     }
   },
 
@@ -25,7 +28,7 @@ export const profileApi = {
       const userRef = doc(db, profileApi.baseCollection, id);
       await updateDoc(userRef, data);
     } catch (error) {
-      console.error("Ошибка при обновлении профиля:", error);
+      console.error("Error updating user profile:", error);
     }
   },
 
@@ -34,7 +37,7 @@ export const profileApi = {
       const userRef = doc(db, profileApi.baseCollection, id);
       await setDoc(userRef, data);
     } catch (error) {
-      console.error("Ошибка при создании профиля:", error);
+      console.error("Error creating user profile:", error);
     }
   },
 

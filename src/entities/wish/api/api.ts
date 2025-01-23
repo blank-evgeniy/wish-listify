@@ -32,7 +32,7 @@ export const wishApi = {
 
       return documents;
     } catch (error) {
-      console.error("Ошибка при получении списка желаний:", error);
+      console.error("Error getting wish list:", error);
     }
   },
 
@@ -47,7 +47,7 @@ export const wishApi = {
         throw new Error("Wish not found");
       }
     } catch (error) {
-      console.error("Ошибка при получении желания:", error);
+      console.error("Error getting wish:", error);
     }
   },
 
@@ -55,7 +55,7 @@ export const wishApi = {
     try {
       await addDoc(collection(db, "users", uid, this.baseCollection), data);
     } catch (error) {
-      console.error("Ошибка при добавлении желания:", error);
+      console.error("Error adding wish:", error);
     }
   },
 
@@ -68,7 +68,7 @@ export const wishApi = {
       const wishRef = doc(db, "users", uid, this.baseCollection, wishId);
       await updateDoc(wishRef, data);
     } catch (error) {
-      console.error("Ошибка при обновлении желания:", error);
+      console.error("Error updating wish:", error);
     }
   },
 
@@ -77,7 +77,7 @@ export const wishApi = {
       const wishRef = doc(db, "users", uid, this.baseCollection, wishId);
       await deleteDoc(wishRef);
     } catch (error) {
-      console.error("Ошибка при удалении желания:", error);
+      console.error("Error deleting wish:", error);
     }
   },
 };

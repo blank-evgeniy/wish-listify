@@ -14,8 +14,6 @@ import { optimisticUpdateProfile } from "./optimistic-update-profile";
  *  - isLoading: Boolean indicating if the update is in progress.
  *  - error: Any error encountered during the update process.
  *
- * @throws Will throw an error if the user is not authenticated.
- *
  * The hook updates both the authentication profile (displayName and photoURL)
  * and the user's profile data in the database.
  */
@@ -31,7 +29,7 @@ export const useUpdateProfile = () => {
 
       const promises = [];
 
-      // обновляем профиль в auth
+      // update auth profile
       if (name) {
         promises.push(
           updateProfile(auth.currentUser, {
@@ -40,7 +38,7 @@ export const useUpdateProfile = () => {
         );
       }
 
-      //обновляем профиль в базе данных
+      // update firestore user profile
       promises.push(
         profileApi.updateProfile(auth.currentUser.uid, newProfileData)
       );

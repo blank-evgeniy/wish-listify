@@ -22,7 +22,7 @@ export const friendRequestApi = {
       const userRef = doc(db, "users", uid);
       const userDoc = await getDoc(userRef);
 
-      if (!userDoc.exists()) throw new Error("Пользователь не найден");
+      if (!userDoc.exists()) throw new Error("User was not found");
 
       const friendRequests = (userDoc.data()?.[this.requestsFieldName] ||
         []) as string[];
@@ -42,25 +42,25 @@ export const friendRequestApi = {
 
       return usersData;
     } catch (error) {
-      console.error("Ошибка при получении списка заявок:", error);
+      console.error("Error getting friend request list:", error);
     }
   },
 
   sendFriendRequest: async function (senderId: string, receiverId: string) {
     try {
       if (senderId === receiverId)
-        throw new Error("Нельзя отправить заявку самому себе");
+        throw new Error("Sending friend request to yourself is not allowed");
 
       const receiverRef = doc(db, "users", receiverId);
       const receiverDoc = await getDoc(receiverRef);
 
-      if (!receiverDoc.exists()) throw new Error("Получатель не найден");
+      if (!receiverDoc.exists()) throw new Error("Receiver was not found");
 
       await updateDoc(receiverRef, {
         [this.requestsFieldName]: arrayUnion(senderId),
       });
     } catch (error) {
-      console.error("Ошибка при отправлении заявки:", error);
+      console.error("Error sending friend request:", error);
     }
   },
 
@@ -87,7 +87,7 @@ export const friendRequestApi = {
         });
       });
     } catch (error) {
-      console.error("Ошибка при принятии заявки", error);
+      console.error("Error accepting friend request:", error);
     }
   },
 
@@ -99,7 +99,7 @@ export const friendRequestApi = {
         [this.requestsFieldName]: arrayRemove(senderId),
       });
     } catch (error) {
-      console.error("Ошибка при отклонении заявки", error);
+      console.error("Error rejecting friend request:", error);
     }
   },
 };

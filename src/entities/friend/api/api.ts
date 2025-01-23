@@ -36,7 +36,7 @@ export const friendApi = {
 
       return friendsData;
     } catch (error) {
-      console.error("Ошибка при получении списка заявок:", error);
+      console.error("Error getting friend list:", error);
     }
   },
 
@@ -47,7 +47,7 @@ export const friendApi = {
         [this.friendsFieldName]: arrayRemove(friendId),
       });
     } catch (error) {
-      console.error("Ошибка при удалении заявки", error);
+      console.error("Error deleting friend:", error);
     }
   },
 };

@@ -7,6 +7,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useAddWish } from "@/entities/wish";
 import { useNavigate } from "react-router";
 import { FormData } from "../../model/type";
+import { useEffect } from "react";
 
 const AddWishForm = () => {
   const navigate = useNavigate();
@@ -19,9 +20,11 @@ const AddWishForm = () => {
 
   const { handleAddWish, isLoading, isSuccess } = useAddWish();
 
-  if (isSuccess) {
-    navigate(RoutePath.WISHLIST);
-  }
+  useEffect(() => {
+    if (isSuccess) {
+      navigate(RoutePath.WISHLIST);
+    }
+  }, [isSuccess, navigate]);
 
   const submit: SubmitHandler<FormData> = (data) => {
     handleAddWish(data);
@@ -57,12 +60,16 @@ const AddWishForm = () => {
           placeholder="Введите стоимость"
           id="price"
           type="number"
-          maxLength={6}
+          maxLength={7}
           {...register("price", {
             valueAsNumber: true,
             min: {
               value: 0,
               message: "Пожалуйста, введите положительное число",
+            },
+            max: {
+              value: 9999999,
+              message: "Количество символов должно быть не более 7",
             },
           })}
           error={errors.price?.message}

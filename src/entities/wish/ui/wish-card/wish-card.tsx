@@ -3,7 +3,7 @@ import { twJoin, twMerge } from "tailwind-merge";
 import GiftIcon from "@/shared/assets/icons/gift";
 import { useDeleteWish } from "../../lib/use-delete-wish";
 import { FallbackImage } from "@/shared/ui/fallback-image";
-import { WishCardFooter } from "./wish-card-footer";
+import { WishCardAction } from "./wish-card-action";
 
 interface WishCardProps {
   data: WishDto;
@@ -51,12 +51,9 @@ export const WishCard = ({ data, className, withAction }: WishCardProps) => {
           )}
         </div>
       </div>
-      <WishCardFooter
+      <WishCardAction
         wishId={data.id}
-        className={twJoin(
-          "pt-2 lg:static absolute right-2 bottom-2",
-          withAction ? "" : "hidden"
-        )}
+        className={twJoin("pt-2", withAction ? "" : "hidden")}
         onDelete={() => handleDeleteWish(data.id)}
       />
     </article>

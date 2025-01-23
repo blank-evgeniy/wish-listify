@@ -11,13 +11,13 @@ interface WishCardFooterProps {
   onDelete: () => void;
 }
 
-export const WishCardFooter = ({
+export const WishCardAction = ({
   className,
   wishId,
   onDelete,
 }: WishCardFooterProps) => {
   return (
-    <footer className={twMerge("flex justify-end gap-x-2", className)}>
+    <div className={twMerge("flex justify-end gap-x-2", className)}>
       <IconLink
         to={RoutePath.EDIT_WISH.replace(":id", wishId)}
         size="sm"
@@ -28,6 +28,6 @@ export const WishCardFooter = ({
       <IconButton size="sm" accentColor="danger" onClick={onDelete}>
         <DeleteIcon className="w-full h-full" />
       </IconButton>
-    </footer>
+    </div>
   );
 };

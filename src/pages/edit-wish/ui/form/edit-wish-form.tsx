@@ -9,6 +9,7 @@ import { useNavigate } from "react-router";
 import { FormData } from "../../model/type";
 import { useWish } from "@/entities/wish/lib/use-wish";
 import { Loader } from "@/shared/ui/loader";
+import { useEffect } from "react";
 
 interface EditWishFormProps {
   wishId: string;
@@ -30,9 +31,11 @@ const EditWishForm = ({ wishId }: EditWishFormProps) => {
     isSuccess,
   } = useUpdateWish();
 
-  if (isSuccess) {
-    navigate(RoutePath.WISHLIST);
-  }
+  useEffect(() => {
+    if (isSuccess) {
+      navigate(RoutePath.WISHLIST);
+    }
+  }, [isSuccess, navigate]);
 
   const submit: SubmitHandler<FormData> = (data) => {
     handleUpdateWish({ wishId, data });
@@ -81,17 +84,21 @@ const EditWishForm = ({ wishId }: EditWishFormProps) => {
           {...register("imgLink")}
         />
         <Input
-          defaultValue={initialValues.price}
+          defaultValue={initialValues.price || 0}
           label="Стоимость"
           placeholder="Введите стоимость"
           id="price"
           type="number"
-          maxLength={6}
+          maxLength={7}
           {...register("price", {
             valueAsNumber: true,
             min: {
               value: 0,
               message: "Пожалуйста, введите положительное число",
+            },
+            max: {
+              value: 9999999,
+              message: "Количество символов должно быть не более 7",
             },
           })}
           error={errors.price?.message}
