@@ -6,7 +6,7 @@ export const useWishlist = () => {
   const { user } = useAuth();
 
   const { data, isLoading, error } = useQuery({
-    queryKey: [wishApi.getQueryKey()],
+    queryKey: [...wishApi.getQueryKey()],
     queryFn: () => wishApi.getWishList(user?.uid || ""),
   });
 

@@ -16,7 +16,7 @@ export const useUpdateWish = () => {
       data: Partial<WishDto>;
     }) => wishApi.updateWish(user?.uid || "", wishId, data),
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: [wishApi.getQueryKey()] });
+      queryClient.invalidateQueries({ queryKey: [...wishApi.getQueryKey()] });
     },
   });
 

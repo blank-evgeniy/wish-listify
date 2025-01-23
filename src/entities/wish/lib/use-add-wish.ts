@@ -11,7 +11,7 @@ export const useAddWish = () => {
     mutationFn: (wishData: Omit<WishDto, "id">) =>
       wishApi.addWish(user?.uid || "", wishData),
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: [wishApi.getQueryKey()] });
+      queryClient.invalidateQueries({ queryKey: [...wishApi.getQueryKey()] });
     },
   });
 

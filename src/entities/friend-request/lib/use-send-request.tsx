@@ -21,7 +21,7 @@ export const useSendRequest = () => {
       friendRequestApi.sendFriendRequest(user?.uid || "", friendId),
     onSettled: () => {
       queryClient.invalidateQueries({
-        queryKey: [...friendRequestApi.getQueryKey()],
+        queryKey: friendRequestApi.getQueryKey(),
       });
     },
   });

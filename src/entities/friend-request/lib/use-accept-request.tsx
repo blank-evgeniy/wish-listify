@@ -9,9 +9,23 @@ export const useAcceptRequest = () => {
   const mutation = useMutation({
     mutationFn: (friendId: string) =>
       friendRequestApi.acceptFriendRequest(friendId, user?.uid || ""),
+
+    onSuccess: async (__, acceptedId) => {
+      const requests = queryClient.getQueryData(
+        friendRequestApi.getQueryKey()
+      ) as string[];
+
+      if (requests) {
+        queryClient.setQueryData(
+          friendRequestApi.getQueryKey(),
+          requests.filter((request) => request !== acceptedId)
+        );
+      }
+    },
+
     onSettled: () => {
       queryClient.invalidateQueries({
-        queryKey: [...friendRequestApi.getQueryKey()],
+        queryKey: friendRequestApi.getQueryKey(),
       });
       queryClient.invalidateQueries({
         queryKey: [friendRequestApi.friendsFieldName],

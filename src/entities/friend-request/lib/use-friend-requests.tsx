@@ -14,7 +14,7 @@ export const useFriendRequests = () => {
   const { user } = useAuth();
 
   const { data, isLoading, error } = useQuery({
-    queryKey: [...friendRequestApi.getQueryKey()],
+    queryKey: friendRequestApi.getQueryKey(),
     queryFn: () => friendRequestApi.getFriendRequestList(user?.uid || ""),
   });
 
