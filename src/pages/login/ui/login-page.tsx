@@ -7,7 +7,7 @@ import { GoogleAuthButton } from "@/features/auth";
 
 const LoginPage = () => {
   return (
-    <main className="min-h-[calc(100vh-var(--header))] flex items-center">
+    <main className="min-h-screen-fixed sm:sm-min-h-screen-fixed flex items-center">
       <Container className="relative">
         <Heading className="text-center">Вход</Heading>
         <div className="bg-bg-200 shadow-inner rounded-lg mx-auto mt-8 px-4 py-8 max-w-[480px] flex flex-col gap-y-4">

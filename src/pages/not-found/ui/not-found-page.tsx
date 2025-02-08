@@ -5,7 +5,7 @@ import { AppLink } from "@/shared/ui/link";
 
 export const NotFoundPage = () => {
   return (
-    <div className="h-[calc(100vh-var(--header))]">
+    <div className="sm:sm-h-screen-fixed h-screen-fixed sm:">
       <Container className="h-full flex flex-col items-center justify-center">
         <Heading>{"Страница не найдена :*("}</Heading>
         <p className="text-text-200">Попробуйте перейти на главную страницу</p>

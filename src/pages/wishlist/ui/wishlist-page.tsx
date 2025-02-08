@@ -12,14 +12,13 @@ export const WishlistPage = () => {
   const { wishlist, isLoading, error } = useWishlist();
 
   return (
-    <Container className="flex gap-x-8 min-h-[calc(100vh-var(--header))]">
+    <Container className="flex gap-x-8 min-h-screen-fixed sm:sm-min-h-screen-fixed">
       <Sidebar />
       <main className="w-full">
         <Heading>Список желаний</Heading>
         <Paper className="flex flex-col items-center justify-center gap-y-8 my-8">
           {isLoading && (
             <div className="grid lg:grid-cols-4 grid-cols-1 gap-x-4 gap-y-2 w-full">
-              <WishCardSkeleton />
               <WishCardSkeleton />
               <WishCardSkeleton />
               <WishCardSkeleton />
@@ -34,7 +33,7 @@ export const WishlistPage = () => {
             <>
               <img
                 src={WishlistImage}
-                className="w-[420px] aspect-square opacity-80"
+                className="w-[420px] max-h-[40vh] object-contain aspect-square opacity-80"
                 alt="Пустой список желаний"
               />
               <p className="text-text-200 text-lg">

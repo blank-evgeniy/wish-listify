@@ -28,7 +28,10 @@ export const FriendList = ({ className }: FriendListProps) => {
   if (friends.length === 0)
     return (
       <>
-        <img src={FriendImage} className="w-[420px] aspect-square opacity-80" />
+        <img
+          src={FriendImage}
+          className="w-[420px] max-h-[40vh] object-contain aspect-square opacity-80"
+        />
         <p className="text-text-200 text-lg">
           {"Ваш список друзей пока пуст :("}
         </p>

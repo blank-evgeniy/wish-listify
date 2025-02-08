@@ -32,10 +32,6 @@ export const WishCardSkeleton = ({ className }: WishCardSkeletonProps) => {
               className="text-text-200 leading-none text-sm w-full h-4 mt-[2px]"
               alt
             />
-            <SkeletonLine
-              className="text-text-200 leading-none text-sm h-4 mt-[2px]"
-              alt
-            />
           </div>
         </div>
       </div>

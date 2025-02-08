@@ -14,7 +14,7 @@ export const ProfilePage = () => {
   const { handleUpdateProfile, isLoading } = useUpdateProfile();
 
   return (
-    <Container className="flex gap-x-8 min-h-[calc(100vh-var(--header))]">
+    <Container className="flex gap-x-8 min-h-screen-fixed sm:sm-min-h-screen-fixed">
       <Sidebar />
 
       <main className="w-full">
