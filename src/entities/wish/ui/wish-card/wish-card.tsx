@@ -18,7 +18,7 @@ export const WishCard = ({ data, className, withAction }: WishCardProps) => {
   return (
     <article
       className={twMerge(
-        "flex lg:flex-col lg:max-h-max max-h-[350px] justify-between bg-bg-300 sm:p-4 p-2 rounded-lg shadow relative",
+        "flex lg:flex-col lg:max-h-full max-h-[350px] justify-between bg-bg-300 sm:p-4 p-2 rounded-lg shadow relative",
         isLoading && "opacity-50 pointer-events-none animate-pulse",
         className
       )}
