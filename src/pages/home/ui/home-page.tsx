@@ -13,7 +13,7 @@ export const HomePage = () => {
           <div className="flex flex-col gap-4 sm:max-w-[calc(var(--container)/2)] z-10">
             <Heading>СОЗДАЙ СВОЙ ИДЕАЛЬНЫЙ СПИСОК ЖЕЛАНИЙ.</Heading>
             <h2 className="sm:text-3xl text-xl leading-[1.125] text-text-200">
-              Легко добавляй, делись и вдохновляйся новыми идеями.
+              Легко добавляй новые идеи, делись ими с друзьями и вдохновляйся.
             </h2>
             <AppLink
               variant="filled"
