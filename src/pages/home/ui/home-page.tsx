@@ -9,7 +9,7 @@ export const HomePage = () => {
   return (
     <main className="min-h-screen-fixed sm:sm-min-h-screen-fixed flex items-center">
       <Container>
-        <div className="flex max-sm:flex-col items-center">
+        <div className="flex max-sm:flex-col justify-between items-center">
           <div className="flex flex-col gap-4 sm:max-w-[calc(var(--container)/2)] z-10">
             <Heading>СОЗДАЙ СВОЙ ИДЕАЛЬНЫЙ СПИСОК ЖЕЛАНИЙ.</Heading>
             <h2 className="sm:text-3xl text-xl leading-[1.125] text-text-200">

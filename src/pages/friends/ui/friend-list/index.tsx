@@ -1,6 +1,6 @@
 import { twMerge } from "tailwind-merge";
 import { FriendCard, useFriendList } from "@/entities/friend";
-import FriendImage from "@/shared/assets/images/friends.png";
+import FriendImage from "@/shared/assets/images/friends-v2.png";
 import { Badge } from "@/shared/ui/badge";
 import { FriendCardSkeleton, SkeletonLine } from "@/widgets/skeleton";
 
