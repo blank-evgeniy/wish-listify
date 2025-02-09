@@ -18,16 +18,16 @@ export const WishCard = ({ data, className, withAction }: WishCardProps) => {
   return (
     <article
       className={twMerge(
-        "flex lg:flex-col lg:max-h-full max-h-[350px] justify-between bg-bg-300 sm:p-4 p-2 rounded-lg shadow relative",
+        "inline-flex lg:flex-col justify-between bg-bg-300 sm:p-4 p-2 rounded-lg shadow relative",
         isLoading && "opacity-50 pointer-events-none animate-pulse",
         className
       )}
     >
       <div className="flex lg:flex-col items-center xs:gap-x-4 gap-x-2 w-full">
         <FallbackImage
-          className="lg:max-w-[420px] xs:max-w-[120px] max-w-[80px] object-cover w-full aspect-square rounded-md bg-bg-200"
+          className="lg:max-w-[420px] xs:max-w-[120px] max-w-[80px] object-cover w-full aspect-square rounded-md bg-bg-200 flex"
           placeholder={
-            <GiftIcon className="h-full w-full p-4 text-text-200 grayscale" />
+            <GiftIcon className="sm:w-20 sm:h-20 w-12 h-12 text-text-200 grayscale" />
           }
           src={imgLink}
         />
@@ -37,7 +37,7 @@ export const WishCard = ({ data, className, withAction }: WishCardProps) => {
           </h3>
           {!!price && <p className="xs:text-xl font-bold">{price} ₽</p>}
           {!!description && (
-            <p className="text-text-200 leading-none text-sm h-[42px] line-clamp-3">
+            <p className="text-text-200 leading-none text-sm line-clamp-3">
               {description}
             </p>
           )}

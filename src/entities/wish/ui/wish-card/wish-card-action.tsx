@@ -17,7 +17,7 @@ export const WishCardAction = ({
   onDelete,
 }: WishCardFooterProps) => {
   return (
-    <div className={twMerge("flex justify-end gap-x-2", className)}>
+    <div className={twMerge("flex justify-end gap-x-2 h-8", className)}>
       <IconLink
         to={RoutePath.EDIT_WISH.replace(":id", wishId)}
         size="sm"
